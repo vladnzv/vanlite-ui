@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Demonstration</title>
+		
+		<link rel="stylesheet" href="./src/my-ui.css">
+		<link rel="stylesheet" href="./main.css">
+		<script src="./src/my-ui.js"></script>
+	</head>
+	<body data-theme="light" data-skin="rounded">
+		<main>
+			<div class="demo switch-thema">
+				<label class="proto-ui-switch">
+					<input type="checkbox" class="proto-ui-switch-input" data-ui="switch-thema">
+					<span class="proto-ui-switch-slider"></span>
+				</label>
+				<span>Dark Thema</span>
+				<label class="proto-ui-switch">
+					<input type="checkbox" class="proto-ui-switch-input" data-ui="switch-skin" checked>
+					<span class="proto-ui-switch-slider"></span>
+				</label>
+				<span>Rounded</span>
+			</div>
+			<div class="demo checkbox-demonstration">
+				<input type="checkbox" class="proto-ui-checkbox" data-ui="checkbox">
+				<input type="checkbox" class="proto-ui-checkbox" data-ui="checkbox">
+				<input type="checkbox" class="proto-ui-checkbox" data-ui="checkbox">
+				<input type="checkbox" class="proto-ui-checkbox" data-ui="checkbox">
+			</div>
+			<div class="demo radio-demonstration">
+				<label class="proto-ui-radio-wrapper">
+					<input type="radio" class="proto-ui-radio" data-ui="radio" name="demo">
+					Option 1
+				</label>
+				<label class="proto-ui-radio-wrapper">
+					<input type="radio" class="proto-ui-radio" data-ui="radio" name="demo">
+					Option 2
+				</label>
+			</div>
+			<div class="demo switcher-demonstration">
+				<label class="proto-ui-switch">
+					<input type="checkbox" class="proto-ui-switch-input" data-ui="switch">
+					<span class="proto-ui-switch-slider"></span>
+				</label>
+			</div>
+			<div class="demo button-demonstration">
+				<button class="proto-ui-button">
+					Default
+				</button>
+				<button class="proto-ui-button proto-ui-button--primary">
+					Save
+				</button>
+				<button class="proto-ui-button proto-ui-button--danger">
+					Delete
+				</button>
+				<button class="proto-ui-button" disabled>
+					Disabled
+				</button>
+			</div>
+			<div class="demo input-demonstration">
+				<input class="proto-ui-input" type="text" placeholder="Введите текст">
+			</div>
+			<div class="demo password-demonstration">
+				<div class="proto-ui-password">
+					<input 
+						class="proto-ui-input"
+						type="password"
+						placeholder="Password"
+					>
+					<button class="proto-ui-password-toggle">👁</button>
+				</div>
+			</div>
+			<div class="demo range-demonstration">
+				<input class="proto-ui-range" type="range" min="0" max="100" value="40">
+			</div>
+			<div class="demo dropdown-demonstration">
+				<div class="proto-ui-dropdown">
+					
+					<button class="proto-ui-button">
+						Действия
+					</button>
+					
+					<div class="proto-ui-dropdown-menu">
+						
+						<button class="proto-ui-dropdown-item">
+							Редактировать
+						</button>
+						
+						<button class="proto-ui-dropdown-item">
+							Дублировать
+						</button>
+						
+						<button class="proto-ui-dropdown-item">
+							Удалить
+						</button>
+						
+					</div>
+					
+				</div>
+			</div>
+			<div class="demo tab-demonstration">
+				<div class="proto-ui-tabs">
+					
+					<div class="proto-ui-tab-list">
+						
+						<button class="proto-ui-button proto-ui-tab" data-tab="general">
+							Общие
+						</button>
+						
+						<button class="proto-ui-button proto-ui-tab" data-tab="settings">
+							Настройки
+						</button>
+						
+						<button class="proto-ui-button proto-ui-tab" data-tab="security">
+							Безопасность
+						</button>
+						
+					</div>
+					
+					<div class="proto-ui-tab-panels">
+						
+						<div class="proto-ui-tab-panel" data-tab="general">
+							Контент общих настроек
+						</div>
+						
+						<div class="proto-ui-tab-panel" data-tab="settings">
+							Контент настроек
+						</div>
+						
+						<div class="proto-ui-tab-panel" data-tab="security">
+							Контент безопасности
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+			<div class="demo checkbox-demonstration">
+				<button class="proto-ui-button proto-ui-button--primary" data-modal-open="demo">
+					Открыть окно
+				</button>
+				<dialog class="proto-ui-modal" data-modal="demo">
+					<div class="proto-ui-modal-content">
+						<header class="proto-ui-modal-header">
+							<h3>Заголовок</h3>
+							<button data-modal-close>✕</button>
+						</header>
+						<div class="proto-ui-modal-body">
+							Контент модального окна
+						</div>
+						<footer class="proto-ui-modal-footer">
+							<button data-modal-close>
+								Закрыть
+							</button>
+						</footer>
+					</div>
+				</dialog>
+			</div>
+			<div class="demo accordion-demonstration">
+				<div class="proto-ui-accordion">
+					
+					<details class="proto-ui-accordion-item">
+						
+						<summary class="proto-ui-accordion-header">
+							Раздел 1
+						</summary>
+						
+						<div class="proto-ui-accordion-body">
+							Контент первого раздела
+						</div>
+						
+					</details>
+					
+					
+					<details class="proto-ui-accordion-item">
+						
+						<summary class="proto-ui-accordion-header">
+							Раздел 2
+						</summary>
+						
+						<div class="proto-ui-accordion-body">
+							Контент второго раздела
+						</div>
+						
+					</details>
+					
+					
+					<details class="proto-ui-accordion-item">
+						
+						<summary class="proto-ui-accordion-header">
+							Раздел 3
+						</summary>
+						
+						<div class="proto-ui-accordion-body">
+							Контент третьего раздела
+						</div>
+						
+					</details>
+					
+				</div>
+			</div>
+			<div class="demo card-demonstration">
+				<div class="proto-ui-card">
+					
+					<div class="proto-ui-card-header">
+						Заголовок
+					</div>
+					
+					<div class="proto-ui-card-body">
+						Основной контент карточки
+					</div>
+					
+					<div class="proto-ui-card-footer">
+						<button class="proto-ui-button">
+							Действие
+						</button>
+					</div>
+					
+				</div>
+			</div>
+			<div class="demo progress-demonstration">
+				<div class="proto-ui-progress" data-progress="40">
+					<div class="proto-ui-progress-bar"></div>
+				</div>
+			</div>
+			<div class="demo circle-demonstration">
+				<div class="proto-ui-progress-circle" data-progress="5">
+					
+					<svg viewBox="0 0 100 100">
+						
+						<circle
+						class="proto-ui-progress-bg"
+						cx="50"
+						cy="50"
+						r="45"
+						/>
+						
+						<circle
+						class="proto-ui-progress-value"
+						cx="50"
+						cy="50"
+						r="45"
+						/>
+						
+					</svg>
+					
+					<span class="proto-ui-progress-text">0%</span>
+					
+				</div>
+			</div>
+			<div class="demo circle-demonstration">
+				<div class="card">
+					
+					<div class="skeleton skeleton-img"></div>
+					
+					<div class="skeleton skeleton-title"></div>
+					
+					<div class="skeleton skeleton-text"></div>
+					<div class="skeleton skeleton-text"></div>
+					<div class="skeleton skeleton-text short"></div>
+					
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

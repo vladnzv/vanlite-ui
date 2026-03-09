@@ -1,0 +1,988 @@
+[data-theme="dark"] {
+	--ui-color-bg: #1f2937;
+	--ui-color-border: #4b5563;
+	
+	--ui-knob-off: #9ca3af;
+	--ui-knob-on: #ffffff;
+}
+
+[data-skin="rounded"] {
+    --radius-ui: 999px;    /* Для чекбоксов, переключателей */
+    --radius-inner: 50%;   /* Для внутренних элементов (after/before) */
+    --radius-btn: 6px;     /* Для кнопок */
+}
+
+[data-skin="flat"] {
+    --radius-ui: 4px;
+    --radius-inner: 3px;
+    --radius-btn: 0px;
+}
+
+/* Специальное исключение для Radio в режиме Flat */
+[data-skin="flat"] .proto-ui-radio::after {
+    --radius-inner: 2px; 
+}
+
+:root {
+	--ui-transition: 0.18s ease;
+	
+	--ui-color-bg: #ffffff;
+	--ui-color-border: #cbd5e1;
+	--ui-thickness-border: 3px;
+	
+	--ui-color-primary: #4f46e5;
+	
+	--ui-knob-off: #94a3b8;
+	--ui-knob-on: #ffffff;
+	
+	--ui-size-sm: 0.85;
+	--ui-size-md: 1;
+	--ui-size-lg: 1.25;
+	
+	--ui-color-danger: red;
+	
+	--range-progress: 40%;
+}
+
+.ui-size--sm {
+	--ui-size: var(--ui-size-sm);
+}
+
+.ui-size--lg {
+	--ui-size: var(--ui-size-lg);
+}
+
+label, button, 
+.proto-ui-accordion-header, .proto-ui-progress-text 
+{
+	user-select: none;
+}
+
+/*
+	╔════════════════════╗
+	║ skeleton component ║
+	╚════════════════════╝
+*/
+
+
+.card {
+	width: 320px;
+	padding: 16px;
+	border-radius: 12px;
+	background: white;
+	box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* базовый skeleton */
+
+.skeleton {
+	background: linear-gradient(
+    90deg,
+    #eee 25%,
+    #f5f5f5 50%,
+    #eee 75%
+	);
+	
+	background-size: 200% 100%;
+	animation: skeleton-loading 1.4s infinite;
+	border-radius: 6px;
+}
+
+/* элементы */
+
+.skeleton-img {
+	width: 100%;
+	height: 180px;
+	margin-bottom: 12px;
+}
+
+.skeleton-title {
+	height: 20px;
+	width: 70%;
+	margin-bottom: 10px;
+}
+
+.skeleton-text {
+	height: 14px;
+	margin-bottom: 8px;
+}
+
+.skeleton-text.short {
+	width: 60%;
+}
+
+/* shimmer animation */
+
+@keyframes skeleton-loading {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
+
+/*
+	╔════════════════════════╗
+	║ progress-bar component ║
+	╚════════════════════════╝
+*/
+
+.proto-ui-progress {
+	width: 100%;
+	height: 8px;
+	
+	background: #e5e7eb;
+	border-radius: 999px;
+	
+	overflow: hidden;
+}
+
+/* Полоса: */
+
+.proto-ui-progress-bar {
+	height: 100%;
+	width: 0;
+	
+	background: #3b82f6;
+	
+	transition: width .3s ease;
+}
+
+/*
+	╔════════════════════════════╗
+	║ progress-bar svg component ║
+	╚════════════════════════════╝
+*/
+
+.proto-ui-progress-circle {
+	position: relative;
+	height: 100px;
+}
+
+.proto-ui-progress-circle svg {
+	width: 100%;
+	height: 100%;
+	
+	transform: rotate(-90deg);
+}
+
+/* Фон круга: */
+
+.proto-ui-progress-bg {
+	fill: none;
+	stroke: #e5e7eb;
+	stroke-width: 8;
+}
+
+/* Прогресс: */
+
+.proto-ui-progress-value {
+	fill: none;
+	stroke: #3b82f6;
+	stroke-width: 8;
+	stroke-linecap: round;
+	stroke-dasharray: 283;
+	stroke-dashoffset: 283;
+	transition: stroke-dashoffset .4s ease;
+}
+
+/* Текст внутри */
+.proto-ui-progress-text {
+	position: absolute;
+	
+	top: 50%;
+	left: 50%;
+	
+	transform: translate(-50%, -50%);
+	
+	font-size: 16px;
+	font-weight: 600;
+	font-family: system-ui;
+	color: #d29500;
+}
+
+/*
+	╔════════════════╗
+	║ card component ║
+	╚════════════════╝
+*/
+
+.proto-ui-card {
+	background: white;
+	
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	
+	box-shadow: 0 2px 8px rgba(0,0,0,.06);
+	
+	overflow: hidden;
+}
+
+.proto-ui-card-header {
+	padding: 12px 16px;
+	
+	font-weight: 600;
+	
+	border-bottom: 1px solid #eee;
+}
+
+.proto-ui-card-body {
+	padding: 16px;
+	line-height: 1.5;
+}
+
+.proto-ui-card-footer {
+	padding: 12px 16px;
+	border-top: 1px solid #eee;
+	text-align: right;
+}
+
+.proto-ui-card:hover {
+	box-shadow: 0 6px 18px rgba(0,0,0,.1);
+	transform: translateY(-2px);
+	transition: .15s;
+}
+
+.proto-ui-card-image {
+	width: 100%;
+	max-height: 40px;
+	display: block;
+}
+
+/*
+	╔═════════════════╗
+	║ Toast component ║
+	╚═════════════════╝
+*/
+
+/* Контейнер будет держать все уведомления. */
+.proto-ui-toast-container {
+	position: fixed;
+	
+	right: 20px;
+	bottom: 20px;
+	
+	display: flex;
+	flex-direction: column;
+	
+	gap: 8px;
+	
+	z-index: 9999;
+}
+
+
+.proto-ui-toast {
+	background: #333;
+	color: white;
+	
+	padding: 10px 14px;
+	border-radius: 6px;
+	font-size: 14px;
+	
+	box-shadow: 0 6px 16px rgba(0,0,0,.2);
+	opacity: 0;
+	transform: translateY(10px);
+	
+	animation: proto-ui-toast-in .2s forwards;
+}
+
+/* Анимация появления */
+@keyframes proto-ui-toast-in {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Анимация исчезновения */
+.proto-ui-toast.hide {
+	animation: proto-ui-toast-out .2s forwards;
+}
+
+@keyframes proto-ui-toast-out {
+	to {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+}
+
+/* Модификаторы */
+.proto-ui-toast--success {
+	background: #16a34a;
+}
+
+.proto-ui-toast--error {
+	background: #dc2626;
+}
+
+.proto-ui-toast--warning {
+	background: #d97706;
+}
+
+.proto-ui-toast--info {
+	background: #2563eb;
+}
+
+.proto-ui-toast-icon {
+	margin-right: 6px;
+}
+
+/*
+	╔═════════════════════╗
+	║ accordion component ║
+	╚═════════════════════╝
+*/
+
+/* Убираем стандартную стрелку */
+.proto-ui-accordion summary {
+	list-style: none;
+}
+
+.proto-ui-accordion summary::-webkit-details-marker {
+	display: none;
+}
+
+/* Стили заголовка */
+.proto-ui-accordion-header {
+	cursor: pointer;
+	padding: 12px;
+	background: #f5f5f5;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	font-weight: 500;
+}
+
+/* Контент */
+.proto-ui-accordion-body {
+	padding: 12px;
+	border: 1px solid #ddd;
+	border-top: none;
+	border-radius: 0 0 6px 6px;
+}
+
+/* Индикатор стрелки */
+
+.proto-ui-accordion-header::after {
+	content: "+";
+	float: right;
+	transition: transform .2s;
+}
+
+/* Когда открыт details[open] — это встроенное состояние. */
+
+.proto-ui-accordion-item[open] 
+.proto-ui-accordion-header::after {
+	
+	content: "−";
+}
+
+
+/*
+	╔═════════════════╗
+	║ modal component ║
+	╚═════════════════╝
+*/
+
+.proto-ui-modal {
+	
+	border: none;
+	padding: 0;
+	
+	border-radius: 8px;
+	
+	max-width: 500px;
+	width: 90%;
+}
+
+/* Затемнение фона. dialog имеет специальный псевдоэлемент ::backdrop, который работает только у <dialog> */
+.proto-ui-modal::backdrop {
+	background: rgba(0,0,0,.4);
+	backdrop-filter: blur(2px);
+}
+
+.proto-ui-modal-content {
+	background: white;
+	padding: 16px;
+}
+
+.proto-ui-modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 12px;
+}
+
+.proto-ui-modal-footer {
+	margin-top: 16px;
+	text-align: right;
+}
+
+/* анимация */
+.proto-ui-modal[open] {
+	animation: modal-in .15s ease;
+}
+
+@keyframes modal-in {
+	
+	from {
+		opacity: 0;
+		transform: scale(.95);
+	}
+	
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+	
+}
+
+
+/*
+	╔═══════════════╗
+	║ tab component ║
+	╚═══════════════╝
+*/
+
+/* Активная вкладка: */
+
+.proto-ui-tab.is-active {
+	border-bottom: 2px solid #3b82f6;
+	font-weight: 500;
+}
+
+/* Панели: */
+
+.proto-ui-tab-panel {
+	display: none;
+}
+
+/* Активная панель: */
+
+.proto-ui-tab-panel.is-active {
+	display: block;
+}
+
+/*
+	╔════════════════════╗
+	║ dropdown component ║
+	╚════════════════════╝
+*/
+
+/* Контейнер */
+.proto-ui-dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Меню */
+.proto-ui-dropdown-menu {
+	
+	position: absolute;
+	
+	top: 100%;
+	left: 0;
+	
+	min-width: 160px;
+	
+	padding: 4px;
+	
+	background: white;
+	
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	
+	box-shadow: 0 4px 10px rgba(0,0,0,.1);
+	
+	opacity: 0;
+	pointer-events: none;
+	
+	transform: translateY(6px);
+	
+	transition: .15s;
+}
+
+/* Показ меню */
+.proto-ui-dropdown:focus-within .proto-ui-dropdown-menu {
+	
+	opacity: 1;
+	pointer-events: auto;
+	
+	transform: translateY(0);
+}
+
+/* Пункты меню */
+.proto-ui-dropdown-item {
+	
+	width: 100%;
+	
+	padding: 6px 10px;
+	
+	border: none;
+	background: none;
+	
+	text-align: left;
+	
+	border-radius: 4px;
+	
+	cursor: pointer;
+}
+
+.proto-ui-dropdown-item:hover {
+	background: #f3f4f6;
+}
+
+/*
+	Как это работает
+	клик на кнопку
+	↓
+	кнопка получает focus
+	↓
+	:focus-within активируется
+	↓
+	меню открывается
+*/
+
+
+/*
+	╔═════════════════╗
+	║ range component ║
+	╚═════════════════╝
+*/
+
+/* Сброс стандартного вида */
+.proto-ui-range {
+	width: 100%;
+	
+	appearance: none;
+	background: transparent;
+	
+	cursor: pointer;
+}
+
+/* Дорожка (track) */
+
+/* Chrome / Edge / Safari используют: */
+
+::-webkit-slider-runnable-track
+.proto-ui-range::-webkit-slider-runnable-track {
+	height: 6px;
+	background: #ddd;
+	border-radius: 999px;
+}
+
+/* Ползунок (thumb) */
+.proto-ui-range::-webkit-slider-thumb {
+	appearance: none;
+	
+	width: 16px;
+	height: 16px;
+	
+	background: #3b82f6;
+	
+	border-radius: 50%;
+	
+	cursor: pointer;
+}
+
+/* Firefox поддержка */
+
+/* Firefox использует другие псевдоэлементы. */
+
+/* track */
+.proto-ui-range::-moz-range-track {
+	
+	height: 6px;
+	
+	background: #ddd;
+	
+	border-radius: 999px;
+}
+
+/* thumb */
+.proto-ui-range::-moz-range-thumb {
+	
+	width: 16px;
+	height: 16px;
+	
+	background: #3b82f6;
+	
+	border: none;
+	
+	border-radius: 50%;
+	
+	cursor: pointer;
+}
+
+/* Цветной прогресс внутри range */
+/* Чтобы левая часть была окрашена ██████──────: */
+/* 6. Добавляем CSS переменную */
+
+.proto-ui-range {
+	--range-progress: 40%;
+	background:
+	
+    linear-gradient(
+	#3b82f6,
+	#3b82f6
+    ) 0 / var(--range-progress) 100% no-repeat,
+	
+    #ddd;
+	
+	height: 6px;
+	border-radius: 999px;
+}
+
+/*
+	╔════════════════════╗
+	║ password component ║
+	╚════════════════════╝
+*/
+
+.proto-ui-password {
+	position: relative;
+}
+
+.proto-ui-password-toggle {
+	
+	position: absolute;
+	
+	right: 47px;
+	top: 50%;
+	
+	transform: translateY(-50%);
+	
+	border: none;
+	background: none;
+	
+	cursor: pointer;
+}
+
+.proto-ui-password .proto-ui-input {
+	padding-right: 36px;
+}
+
+
+/*
+	╔═════════════════╗
+	║ input component ║
+	╚═════════════════╝
+*/
+
+.proto-ui-input {
+	width: 90%;
+	
+	padding: 8px 12px;
+	
+	font: inherit;
+	
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	
+	background: #fff;
+	
+	outline: none;
+	
+	transition: 
+    border-color .15s,
+    box-shadow .15s;
+}
+
+.proto-ui-input:focus {
+	border-color: #3b82f6;
+	
+	box-shadow: 
+    0 0 0 2px rgba(59,130,246,.2);
+}
+
+.proto-ui-input:disabled {
+	background: #f5f5f5;
+	color: #999;
+	
+	cursor: not-allowed;
+}
+
+.proto-ui-input--error {
+	border-color: #ef4444;
+}
+
+
+
+/*
+	╔══════════════════╗
+	║ Button component ║
+	╚══════════════════╝
+*/
+
+.proto-ui-button {
+	appearance: none;
+	border: 1px solid var(--ui-color-border);
+	border-radius: var(--radius-btn);
+	
+	background: var(--ui-color-bg);
+	color: var(--ui-color-text);
+	
+	padding: 8px 14px;
+	
+	font: inherit;
+	
+	cursor: pointer;
+	
+	transition: var(--ui-transition);
+}
+
+.proto-ui-button:hover {
+	
+	border-color: var(--ui-color-primary);
+}
+
+.proto-ui-button:focus-visible {
+	
+	outline: 2px solid var(--ui-color-primary);
+	outline-offset: 2px;
+}
+
+.proto-ui-button--primary {
+	
+	background: var(--ui-color-primary);
+	border-color: var(--ui-color-primary);
+	
+	color: white;
+}
+
+.proto-ui-button--primary:hover {
+	filter: brightness(0.95);
+}
+
+.proto-ui-button--danger {
+	background: var(--ui-color-danger);
+	border-color: var(--ui-color-danger);
+	
+	color: white;
+}
+
+.proto-ui-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+
+
+/*
+	╔══════════════════╗
+	║ Switch component ║
+	╚══════════════════╝
+*/
+
+.proto-ui-switch {
+	position: relative;
+	display: inline-block;
+	
+	width:		calc(42px * var(--ui-size, 1));
+	height:		calc(22px * var(--ui-size, 1));
+}
+
+/* Скрываем стандартный checkbox */
+.proto-ui-switch-input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+/* Основная "дорожка" */
+.proto-ui-switch-slider {
+	position: absolute;
+	
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	
+	background: var(--ui-color-border);
+	border-radius: var(--radius-ui);
+	
+	transition: var(--ui-transition);
+	
+	cursor: pointer;
+}
+
+/* Кружок переключателя */
+.proto-ui-switch-slider::before {
+	
+	content: "";
+	
+	position: absolute;
+	
+	height: 16px;
+	width: 16px;
+	
+	left: 3px;
+	top: 3px;
+	
+	background: white;
+	border-radius: var(--radius-inner);
+	
+	transition: var(--ui-transition);
+}
+
+/* Когда переключатель включён */
+.proto-ui-switch-input:checked + .proto-ui-switch-slider {
+	background: var(--ui-color-primary);
+}
+
+/* Движение кружка, создаёт плавный сдвиг вправо. */
+.proto-ui-switch-input:checked + .proto-ui-switch-slider::before {
+	transform: translateX(20px);
+}
+
+.proto-ui-switch-slider:hover {
+	opacity: 0.9;
+}
+
+
+/*
+	╔════════════════════╗
+	║ Checkbox-komponent ║
+	╚════════════════════╝
+*/
+
+/* Базовый чекбокс */
+.proto-ui-checkbox {
+	appearance: none;
+	
+	background: var(--ui-color-bg);
+	border: var(--ui-thickness-border) solid var(--ui-color-border);
+	
+	border-radius: var(--radius-ui);
+	
+	cursor: pointer;
+	position: relative;
+	
+	transition: var(--ui-transition);
+	
+	width:		calc(42px * var(--ui-size, 1));
+	height:		calc(22px * var(--ui-size, 1));
+}
+
+/* Кружок внутри (knob) */
+.proto-ui-checkbox::after {
+	content: "";
+	
+	position: absolute;
+	top: 50%;
+	left: 3px;
+	
+	border-radius: var(--radius-inner);
+	
+	width: 14px;
+	height: 14px;
+	
+	background: var(--ui-knob-off);
+	
+	transform: translateY(-50%);
+	transition: var(--ui-transition);
+}
+
+/* checked */
+.proto-ui-checkbox:checked {
+	border-color: var(--ui-color-primary);
+}
+
+/* Кружок уезжает вправо */
+.proto-ui-checkbox:checked::after {
+	left: calc(100% - 17px);
+	background: var(--ui-color-primary);
+}
+
+/* Hover-effect */
+.proto-ui-checkbox:hover {
+	border-color: var(--ui-color-primary);
+}
+
+/* Focus (очень важный UX) */
+.proto-ui-checkbox:focus-visible {
+	outline: 2px solid var(--ui-color-primary);
+	outline-offset: 2px;
+}
+
+/* disabled состояние */
+.proto-ui-checkbox:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/*
+	╔═════════════════╗
+	║ Radio-component ║
+	╚═════════════════╝
+*/
+
+.proto-ui-radio {
+	appearance: none;
+	
+	width:		calc(18px * var(--ui-size, 1));
+	height:		calc(18px * var(--ui-size, 1));
+	
+	border: 2px solid var(--ui-color-border);
+	border-radius: var(--radius-inner);
+	background: var(--ui-color-bg);
+	
+	cursor: pointer;
+	position: relative;
+	
+	transition: var(--ui-transition);
+}
+
+.proto-ui-radio::after  {
+	content: "";
+	
+	position: absolute;
+	
+	width: 8px;
+	height: 8px;
+	
+	top: 50%;
+	left: 50%;
+	
+	border-radius: var(--radius-inner);
+	
+	transform: translate(-50%, -50%) scale(0);
+	
+	background: var(--ui-color-primary);
+	
+	transition: var(--ui-transition);
+}
+
+.proto-ui-radio:checked {
+	border-color: var(--ui-color-primary);
+}
+
+.proto-ui-radio:checked::after {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.proto-ui-radio:hover {
+	border-color: var(--ui-color-primary);
+}
+
+.proto-ui-radio:focus-visible {
+	outline: 2px solid var(--ui-color-primary);
+	outline-offset: 2px;
+}
+
+/* Wrapper (рекомендую) */
+
+/* Чтобы красиво выровнять текст. */
+
+.proto-ui-radio-wrapper {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	
+	cursor: pointer;
+}
+
+.proto-ui-radio:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
