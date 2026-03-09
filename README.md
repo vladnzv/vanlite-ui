@@ -29,7 +29,7 @@ Include the CSS and JavaScript:
 <script src="ui.js"></script>
 
 Usage
-Toast
+`Toast
 <button data-toast="Saved successfully">
 Save
 </button>
@@ -47,7 +47,7 @@ Accordion
 <details>
 <summary>What is this?</summary>
 <p>This is an accordion item.</p>
-</details>
+</details>`
 
 Philosophy
 This project focuses on:
@@ -73,4 +73,5 @@ License
 MIT License
 
 Created by Vladislav Nazarov
+
 GitHub: github.com/vladnzv
