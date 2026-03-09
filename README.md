@@ -29,7 +29,7 @@ Include the CSS and JavaScript:
 <script src="ui.js"></script>
 
 Usage
-`Toast
+Toast
 <button data-toast="Saved successfully">
 Save
 </button>
@@ -43,11 +43,6 @@ Open settings
 <p>Modal content</p>
 <button onclick="this.closest('dialog').close()">Close</button>
 </dialog>
-Accordion
-<details>
-<summary>What is this?</summary>
-<p>This is an accordion item.</p>
-</details>`
 
 Philosophy
 This project focuses on:
@@ -75,3 +70,4 @@ MIT License
 Created by Vladislav Nazarov
 
 GitHub: github.com/vladnzv
+
