@@ -119,18 +119,21 @@ window.protoUI = {};
 protoUI.skeletonDemo = function() {
 	setTimeout(() => {
 		
-		const card = document.querySelector(".card");
+		const cards = document.querySelectorAll(".imgcard-demonstration .card");
 		
-		card.innerHTML = `
-		<img src="https://picsum.photos/320/180" style="width:100%; border-radius:8px; margin-bottom:12px">
+		cards.forEach(card => {
+			card.innerHTML = `
+			<img src="https://picsum.photos/320/180" style="width:100%; border-radius:8px; margin-bottom:12px">
+			
+			<h3>Заголовок карточки</h3>
+			
+			<p>
+			Это текст карточки. Skeleton loader исчезает
+			когда данные загрузились.
+			</p>
+			`;
+		})
 		
-		<h3>Заголовок карточки</h3>
-		
-		<p>
-		Это текст карточки. Skeleton loader исчезает
-		когда данные загрузились.
-		</p>
-		`;
 		
 	}, 3000);
 }
