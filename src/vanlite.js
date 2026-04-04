@@ -8,6 +8,7 @@ class Vanlite {
 	
 	run() {
 		window.addEventListener('load', () => {
+			this.setPageState();
 			document.querySelectorAll('.proto-ui-range')			.forEach(range		=> this.rangeUpdate				(range));
 			document.querySelectorAll('.proto-ui-password-toggle')	.forEach(btn		=> this.hPassToggle				(btn));
 			document.querySelectorAll('.proto-ui-tabs')				.forEach(tabs 		=> this.hTabs					(tabs));
@@ -19,6 +20,18 @@ class Vanlite {
 			document.querySelector('[data-ui="switch-thema"]')		.addEventListener('change', this.changeTheme);
 			document.querySelector('[data-ui="switch-skin"]')		.addEventListener('change', this.changeSkin);
 		});
+	}
+
+	setPageState() {
+		const skin = document.querySelector('[data-ui="switch-skin"]');
+		const thema = document.querySelector('[data-ui="switch-thema"]');
+
+		if (skin) {
+			document.body.setAttribute('data-skin', skin.checked ? 'rounded' : 'flat');
+		}
+		if (thema){
+			document.body.setAttribute('data-theme', thema.checked ? 'dark' : 'light');
+		}
 	}
 	
 	rangeUpdate(range) {
