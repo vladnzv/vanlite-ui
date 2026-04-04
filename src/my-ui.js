@@ -22,12 +22,6 @@ window.onload = function() {
 	document.querySelectorAll('.proto-ui-progress-circle')	.forEach(circle 	=> valueProgressCircleSet(circle));
 	
 	protoUI.animateCircleProgress(".proto-ui-progress-circle", 5);
-	protoUI.skeletonDemo();
-	
-	protoUI.toast("Успешно", "success", 5000);
-	protoUI.toast("Ошибка", "error", 5000);
-	protoUI.toast("Предупреждение!", "warning", 5000);
-	protoUI.toast("Просто информация", "info", 5000);
 }
 
 function rangeUpdate(range) {
@@ -115,28 +109,6 @@ function valueProgressCircleSet(circle) {
 }
 
 window.protoUI = {};
-
-protoUI.skeletonDemo = function() {
-	setTimeout(() => {
-		
-		const cards = document.querySelectorAll(".imgcard-demonstration .card");
-		
-		cards.forEach(card => {
-			card.innerHTML = `
-			<img src="https://picsum.photos/320/180" style="width:100%; border-radius:8px; margin-bottom:12px">
-			
-			<h3>Заголовок карточки</h3>
-			
-			<p>
-			Это текст карточки. Skeleton loader исчезает
-			когда данные загрузились.
-			</p>
-			`;
-		})
-		
-		
-	}, 3000);
-}
 
 protoUI.toast = function(message, type = "info", duration = 3000) {
 	
