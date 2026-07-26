@@ -6,92 +6,94 @@
 		<link rel="stylesheet" href="./src/my-ui.css">
 		<link rel="stylesheet" href="./main.css">
 		<script src="./src/vanlite.js"></script>
-		<script src="demo.js"></script>
+		<!-- <script src="demo.js"></script> -->
 	</head>
 	<body>
 		<main>
 			<div class="demo switch-thema">
-				<label class="proto-ui-switch">
-					<input type="checkbox" class="proto-ui-switch-input" data-ui="switch-thema">
-					<span class="proto-ui-switch-slider"></span>
+				<label class="vl-switch">
+					<input type="checkbox" class="vl-switch-input" data-ui="switch-thema">
+					<span class="vl-switch-slider"></span>
 				</label>
 				<span>Dark Thema</span>
-				<label class="proto-ui-switch">
-					<input type="checkbox" class="proto-ui-switch-input" data-ui="switch-skin" checked>
-					<span class="proto-ui-switch-slider"></span>
+				<label class="vl-switch">
+					<input type="checkbox" class="vl-switch-input" data-ui="switch-skin" checked>
+					<span class="vl-switch-slider"></span>
 				</label>
 				<span>Rounded</span>
 			</div>
 			<div class="demo checkbox-demonstration">
-				<input type="checkbox" class="proto-ui-checkbox" data-ui="checkbox">
-				<input type="checkbox" class="proto-ui-checkbox" data-ui="checkbox">
-				<input type="checkbox" class="proto-ui-checkbox" data-ui="checkbox">
-				<input type="checkbox" class="proto-ui-checkbox" data-ui="checkbox">
+				<input type="checkbox" class="vl-checkbox" data-ui="checkbox">
+				<input type="checkbox" class="vl-checkbox" data-ui="checkbox">
+				<input type="checkbox" class="vl-checkbox" data-ui="checkbox">
+				<input type="checkbox" class="vl-checkbox" data-ui="checkbox">
 			</div>
 			<div class="demo radio-demonstration">
-				<label class="proto-ui-radio-wrapper">
-					<input type="radio" class="proto-ui-radio" data-ui="radio" name="demo">
+				<label class="vl-radio-wrapper">
+					<input type="radio" class="vl-radio" data-ui="radio" name="demo">
 					Option 1
 				</label>
-				<label class="proto-ui-radio-wrapper">
-					<input type="radio" class="proto-ui-radio" data-ui="radio" name="demo">
+				<label class="vl-radio-wrapper">
+					<input type="radio" class="vl-radio" data-ui="radio" name="demo">
 					Option 2
 				</label>
 			</div>
 			<div class="demo switcher-demonstration">
-				<label class="proto-ui-switch">
-					<input type="checkbox" class="proto-ui-switch-input" data-ui="switch">
-					<span class="proto-ui-switch-slider"></span>
+				<label class="vl-switch">
+					<input type="checkbox" class="vl-switch-input" data-ui="switch">
+					<span class="vl-switch-slider"></span>
 				</label>
 			</div>
 			<div class="demo button-demonstration">
-				<button class="proto-ui-button">
+				<button class="vl-button">
 					Default
 				</button>
-				<button class="proto-ui-button proto-ui-button--primary">
+				<button class="vl-button vl-button--primary">
 					Save
 				</button>
-				<button class="proto-ui-button proto-ui-button--danger">
+				<button class="vl-button vl-button--danger">
 					Delete
 				</button>
-				<button class="proto-ui-button" disabled>
+				<button class="vl-button" disabled>
 					Disabled
 				</button>
 			</div>
 			<div class="demo input-demonstration">
-				<input class="proto-ui-input" type="text" placeholder="Введите текст">
+				<input class="vl-input" type="text" placeholder="Введите текст">
 			</div>
 			<div class="demo password-demonstration">
-				<div class="proto-ui-password">
+				<div class="vl-password">
 					<input 
-						class="proto-ui-input"
+						class="vl-input"
 						type="password"
 						placeholder="Password"
 					>
-					<button class="proto-ui-password-toggle">👁</button>
+					<button class="vl-password-toggle" data-ui="vl-password-toggle">👁</button>
 				</div>
 			</div>
+			
 			<div class="demo range-demonstration">
-				<input class="proto-ui-range" type="range" min="0" max="100" value="40">
+				<input class="vl-range" data-ui="vl-range" type="range" min="0" max="100" value="20">
 			</div>
+			
 			<div class="demo dropdown-demonstration">
-				<div class="proto-ui-dropdown">
+				<div class="vl-dropdown">
 					
-					<button class="proto-ui-button">
+					<button class="vl-button">
 						Действия
 					</button>
 					
-					<div class="proto-ui-dropdown-menu">
+					<div class="vl-dropdown-menu">
 						
-						<button class="proto-ui-dropdown-item">
+						<button class="vl-dropdown-item">
 							Редактировать
 						</button>
 						
-						<button class="proto-ui-dropdown-item">
+						<button class="vl-dropdown-item">
 							Дублировать
 						</button>
 						
-						<button class="proto-ui-dropdown-item">
+						<button class="vl-dropdown-item">
 							Удалить
 						</button>
 						
@@ -100,35 +102,35 @@
 				</div>
 			</div>
 			<div class="demo tab-demonstration">
-				<div class="proto-ui-tabs">
+				<div class="vl-tabs" data-ui="vl-tabs">
 					
-					<div class="proto-ui-tab-list">
+					<div class="vl-tab-list">
 						
-						<button class="proto-ui-button proto-ui-tab" data-tab="general">
+						<button class="vl-button vl-tab" data-tab="general">
 							Общие
 						</button>
 						
-						<button class="proto-ui-button proto-ui-tab" data-tab="settings">
+						<button class="vl-button vl-tab" data-tab="settings">
 							Настройки
 						</button>
 						
-						<button class="proto-ui-button proto-ui-tab" data-tab="security">
+						<button class="vl-button vl-tab" data-tab="security">
 							Безопасность
 						</button>
 						
 					</div>
 					
-					<div class="proto-ui-tab-panels">
+					<div class="vl-tab-panels">
 						
-						<div class="proto-ui-tab-panel" data-tab="general">
+						<div class="vl-tab-panel" data-tab="general">
 							Контент общих настроек
 						</div>
 						
-						<div class="proto-ui-tab-panel" data-tab="settings">
+						<div class="vl-tab-panel" data-tab="settings">
 							Контент настроек
 						</div>
 						
-						<div class="proto-ui-tab-panel" data-tab="security">
+						<div class="vl-tab-panel" data-tab="security">
 							Контент безопасности
 						</div>
 						
@@ -137,19 +139,19 @@
 				</div>
 			</div>
 			<div class="demo checkbox-demonstration">
-				<button class="proto-ui-button proto-ui-button--primary" data-modal-open="demo">
+				<button class="vl-button vl-button--primary" data-modal-open="demo">
 					Открыть окно
 				</button>
-				<dialog class="proto-ui-modal" data-modal="demo">
-					<div class="proto-ui-modal-content">
-						<header class="proto-ui-modal-header">
+				<dialog class="vl-modal" data-modal="demo">
+					<div class="vl-modal-content">
+						<header class="vl-modal-header">
 							<h3>Заголовок</h3>
 							<button data-modal-close>✕</button>
 						</header>
-						<div class="proto-ui-modal-body">
+						<div class="vl-modal-body">
 							Контент модального окна
 						</div>
-						<footer class="proto-ui-modal-footer">
+						<footer class="vl-modal-footer">
 							<button data-modal-close>
 								Закрыть
 							</button>
@@ -158,41 +160,41 @@
 				</dialog>
 			</div>
 			<div class="demo accordion-demonstration">
-				<div class="proto-ui-accordion">
+				<div class="vl-accordion">
 					
-					<details class="proto-ui-accordion-item">
+					<details class="vl-accordion-item">
 						
-						<summary class="proto-ui-accordion-header">
+						<summary class="vl-accordion-header">
 							Раздел 1
 						</summary>
 						
-						<div class="proto-ui-accordion-body">
+						<div class="vl-accordion-body">
 							Контент первого раздела
 						</div>
 						
 					</details>
 					
 					
-					<details class="proto-ui-accordion-item">
+					<details class="vl-accordion-item">
 						
-						<summary class="proto-ui-accordion-header">
+						<summary class="vl-accordion-header">
 							Раздел 2
 						</summary>
 						
-						<div class="proto-ui-accordion-body">
+						<div class="vl-accordion-body">
 							Контент второго раздела
 						</div>
 						
 					</details>
 					
 					
-					<details class="proto-ui-accordion-item">
+					<details class="vl-accordion-item">
 						
-						<summary class="proto-ui-accordion-header">
+						<summary class="vl-accordion-header">
 							Раздел 3
 						</summary>
 						
-						<div class="proto-ui-accordion-body">
+						<div class="vl-accordion-body">
 							Контент третьего раздела
 						</div>
 						
@@ -201,18 +203,18 @@
 				</div>
 			</div>
 			<div class="demo card-demonstration">
-				<div class="proto-ui-card">
+				<div class="vl-card">
 					
-					<div class="proto-ui-card-header">
+					<div class="vl-card-header">
 						Заголовок
 					</div>
 					
-					<div class="proto-ui-card-body">
+					<div class="vl-card-body">
 						Основной контент карточки
 					</div>
 					
-					<div class="proto-ui-card-footer">
-						<button class="proto-ui-button">
+					<div class="vl-card-footer">
+						<button class="vl-button">
 							Действие
 						</button>
 					</div>
@@ -220,24 +222,24 @@
 				</div>
 			</div>
 			<div class="demo progress-demonstration">
-				<div class="proto-ui-progress" data-progress="40">
-					<div class="proto-ui-progress-bar"></div>
+				<div class="vl-progress" data-ui="vl-progress" data-progress="40">
+					<div class="vl-progress-bar"></div>
 				</div>
 			</div>
 			<div class="demo circle-demonstration">
-				<div class="proto-ui-progress-circle" data-progress="5">
+				<div class="vl-progress-circle" data-ui="vl-progress-circle" data-progress="5">
 					
 					<svg viewBox="0 0 100 100">
 						
 						<circle
-						class="proto-ui-progress-bg"
+						class="vl-progress-bg"
 						cx="50"
 						cy="50"
 						r="45"
 						/>
 						
 						<circle
-						class="proto-ui-progress-value"
+						class="vl-progress-value"
 						cx="50"
 						cy="50"
 						r="45"
@@ -245,11 +247,44 @@
 						
 					</svg>
 					
-					<span class="proto-ui-progress-text">0%</span>
+					<span class="vl-progress-text">0%</span>
 					
 				</div>
 			</div>
 			<div class="demo imgcard-demonstration">
+				<div class="card">
+					
+					<div class="skeleton skeleton-img"></div>
+					
+					<div class="skeleton skeleton-title"></div>
+					
+					<div class="skeleton skeleton-text"></div>
+					<div class="skeleton skeleton-text"></div>
+					<div class="skeleton skeleton-text short"></div>
+					
+				</div>
+				<div class="card">
+					
+					<div class="skeleton skeleton-img"></div>
+					
+					<div class="skeleton skeleton-title"></div>
+					
+					<div class="skeleton skeleton-text"></div>
+					<div class="skeleton skeleton-text"></div>
+					<div class="skeleton skeleton-text short"></div>
+					
+				</div>
+				<div class="card">
+					
+					<div class="skeleton skeleton-img"></div>
+					
+					<div class="skeleton skeleton-title"></div>
+					
+					<div class="skeleton skeleton-text"></div>
+					<div class="skeleton skeleton-text"></div>
+					<div class="skeleton skeleton-text short"></div>
+					
+				</div>
 				<div class="card">
 					
 					<div class="skeleton skeleton-img"></div>

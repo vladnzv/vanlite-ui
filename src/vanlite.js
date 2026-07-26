@@ -9,19 +9,19 @@ class Vanlite {
 	run() {
 		window.addEventListener('load', () => {
 			this.setPageState();
-			document.querySelectorAll('.proto-ui-range')			.forEach(range		=> this.rangeUpdate				(range));
-			document.querySelectorAll('.proto-ui-password-toggle')	.forEach(btn		=> this.hPassToggle				(btn));
-			document.querySelectorAll('.proto-ui-tabs')				.forEach(tabs 		=> this.hTabs					(tabs));
-			document.querySelectorAll('[data-modal-open]')			.forEach(btn 		=> this.hModalOpen				(btn));
-			document.querySelectorAll('[data-modal-close]')			.forEach(btn 		=> this.hModalClose				(btn));
-			document.querySelectorAll('.proto-ui-progress')			.forEach(progress 	=> this.valueProgressBarSet		(progress));
-			document.querySelectorAll('.proto-ui-progress-circle')	.forEach(circle 	=> this.valueProgressCircleSet	(circle));
+			document.querySelectorAll('[data-ui="vl-range"]')				.forEach(range		=> this.rangeUpdate				(range));
+			document.querySelectorAll('[data-ui="vl-password-toggle"]')	.forEach(btn		=> this.hPassToggle				(btn));
+			document.querySelectorAll('[data-ui="vl-tabs"]')				.forEach(tabs 		=> this.hTabs					(tabs));
+			document.querySelectorAll('[data-modal-open]')						.forEach(btn 		=> this.hModalOpen				(btn));
+			document.querySelectorAll('[data-modal-close]')						.forEach(btn 		=> this.hModalClose				(btn));
+			document.querySelectorAll('[data-ui="vl-progress"]')			.forEach(progress 	=> this.valueProgressBarSet		(progress));
+			document.querySelectorAll('[data-ui="vl-progress-circle"]')	.forEach(circle 	=> this.valueProgressCircleSet	(circle));
 			
-			document.querySelector('[data-ui="switch-thema"]')		.addEventListener('change', this.changeTheme);
-			document.querySelector('[data-ui="switch-skin"]')		.addEventListener('change', this.changeSkin);
+			document.querySelector('[data-ui="switch-thema"]')					.addEventListener('change', this.changeTheme);
+			document.querySelector('[data-ui="switch-skin"]')					.addEventListener('change', this.changeSkin);
 		});
 	}
-
+	
 	setPageState() {
 		const skin = document.querySelector('[data-ui="switch-skin"]');
 		const thema = document.querySelector('[data-ui="switch-thema"]');
@@ -60,8 +60,8 @@ class Vanlite {
 	}
 	
 	hTabs(tabs) {
-		const buttons = tabs.querySelectorAll('.proto-ui-tab');
-		const panels  = tabs.querySelectorAll('.proto-ui-tab-panel');
+		const buttons = tabs.querySelectorAll('.vl-tab');
+		const panels  = tabs.querySelectorAll('.vl-tab-panel');
 		
 		buttons.forEach(btn => {
 			
@@ -80,7 +80,7 @@ class Vanlite {
 				btn.classList.add('is-active');
 				
 				tabs.querySelector(
-					`.proto-ui-tab-panel[data-tab="${name}"]`
+					`.vl-tab-panel[data-tab="${name}"]`
 				)
 				.classList.add('is-active');
 				
@@ -103,7 +103,7 @@ class Vanlite {
 	
 	valueProgressBarSet(progress) {
 		const value = progress.dataset.progress;
-		progress.querySelector('.proto-ui-progress-bar').style.width = value + '%';
+		progress.querySelector('.vl-progress-bar').style.width = value + '%';
 	}
 	
 	valueProgressCircleSet(circle) {
@@ -111,10 +111,10 @@ class Vanlite {
 		const radius = 45;
 		const circumference = 2 * Math.PI * radius;
 		const offset = circumference - value / 100 * circumference;
-		const progress = circle.querySelector('.proto-ui-progress-value');
+		const progress = circle.querySelector('.vl-progress-value');
 		
 		progress.style.strokeDashoffset = offset;
-		circle.querySelector('.proto-ui-progress-text').textContent = value + "%";
+		circle.querySelector('.vl-progress-text').textContent = value + "%";
 	}
 	
 	setCircleProgress (el, value) {
@@ -126,13 +126,13 @@ class Vanlite {
 		circumference - value / 100 * circumference;
 		
 		const progress =
-		el.querySelector('.proto-ui-progress-value');
+		el.querySelector('.vl-progress-value');
 		
 		progress.style.strokeDasharray = circumference;
 		
 		progress.style.strokeDashoffset = offset;
 		
-		el.querySelector('.proto-ui-progress-text')
+		el.querySelector('.vl-progress-text')
 		.textContent = Math.round(value) + "%";
 		
 	};
@@ -188,12 +188,12 @@ class Vanlite {
 		};
 		
 		let container =
-		document.querySelector('.proto-ui-toast-container');
+		document.querySelector('.vl-toast-container');
 		
 		if (!container) {
 			
 			container = document.createElement('div');
-			container.className = 'proto-ui-toast-container';
+			container.className = 'vl-toast-container';
 			
 			document.body.appendChild(container);
 			
@@ -201,10 +201,10 @@ class Vanlite {
 		
 		const toast = document.createElement('div');
 		
-		toast.className = `proto-ui-toast proto-ui-toast--${type}`;
+		toast.className = `vl-toast vl-toast--${type}`;
 		
 		toast.innerHTML =
-		`<span class="proto-ui-toast-icon">${icons[type] || ""}</span>
+		`<span class="vl-toast-icon">${icons[type] || ""}</span>
 		${message}`;
 		
 		container.appendChild(toast);

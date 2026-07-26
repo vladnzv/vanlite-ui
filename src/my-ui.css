@@ -19,7 +19,7 @@
 }
 
 /* Специальное исключение для Radio в режиме Flat */
-[data-skin="flat"] .proto-ui-radio::after {
+[data-skin="flat"] .vl-radio::after {
     --radius-inner: 2px; 
 }
 
@@ -53,7 +53,7 @@
 }
 
 label, button, 
-.proto-ui-accordion-header, .proto-ui-progress-text 
+.vl-accordion-header, .vl-progress-text 
 {
 	user-select: none;
 }
@@ -128,7 +128,7 @@ label, button,
 	╚════════════════════════╝
 */
 
-.proto-ui-progress {
+.vl-progress {
 	width: 100%;
 	height: 8px;
 	
@@ -140,7 +140,7 @@ label, button,
 
 /* Полоса: */
 
-.proto-ui-progress-bar {
+.vl-progress-bar {
 	height: 100%;
 	width: 0;
 	
@@ -155,12 +155,12 @@ label, button,
 	╚════════════════════════════╝
 */
 
-.proto-ui-progress-circle {
+.vl-progress-circle {
 	position: relative;
 	height: 100px;
 }
 
-.proto-ui-progress-circle svg {
+.vl-progress-circle svg {
 	width: 100%;
 	height: 100%;
 	
@@ -169,7 +169,7 @@ label, button,
 
 /* Фон круга: */
 
-.proto-ui-progress-bg {
+.vl-progress-bg {
 	fill: none;
 	stroke: #e5e7eb;
 	stroke-width: 8;
@@ -177,7 +177,7 @@ label, button,
 
 /* Прогресс: */
 
-.proto-ui-progress-value {
+.vl-progress-value {
 	fill: none;
 	stroke: #3b82f6;
 	stroke-width: 8;
@@ -188,7 +188,7 @@ label, button,
 }
 
 /* Текст внутри */
-.proto-ui-progress-text {
+.vl-progress-text {
 	position: absolute;
 	
 	top: 50%;
@@ -208,7 +208,7 @@ label, button,
 	╚════════════════╝
 */
 
-.proto-ui-card {
+.vl-card {
 	background: white;
 	
 	border: 1px solid #ddd;
@@ -219,7 +219,7 @@ label, button,
 	overflow: hidden;
 }
 
-.proto-ui-card-header {
+.vl-card-header {
 	padding: 12px 16px;
 	
 	font-weight: 600;
@@ -227,24 +227,24 @@ label, button,
 	border-bottom: 1px solid #eee;
 }
 
-.proto-ui-card-body {
+.vl-card-body {
 	padding: 16px;
 	line-height: 1.5;
 }
 
-.proto-ui-card-footer {
+.vl-card-footer {
 	padding: 12px 16px;
 	border-top: 1px solid #eee;
 	text-align: right;
 }
 
-.proto-ui-card:hover {
+.vl-card:hover {
 	box-shadow: 0 6px 18px rgba(0,0,0,.1);
 	transform: translateY(-2px);
 	transition: .15s;
 }
 
-.proto-ui-card-image {
+.vl-card-image {
 	width: 100%;
 	max-height: 40px;
 	display: block;
@@ -257,7 +257,7 @@ label, button,
 */
 
 /* Контейнер будет держать все уведомления. */
-.proto-ui-toast-container {
+.vl-toast-container {
 	position: fixed;
 	
 	right: 20px;
@@ -272,7 +272,7 @@ label, button,
 }
 
 
-.proto-ui-toast {
+.vl-toast {
 	background: #333;
 	color: white;
 	
@@ -284,11 +284,11 @@ label, button,
 	opacity: 0;
 	transform: translateY(10px);
 	
-	animation: proto-ui-toast-in .2s forwards;
+	animation: vl-toast-in .2s forwards;
 }
 
 /* Анимация появления */
-@keyframes proto-ui-toast-in {
+@keyframes vl-toast-in {
 	to {
 		opacity: 1;
 		transform: translateY(0);
@@ -296,11 +296,11 @@ label, button,
 }
 
 /* Анимация исчезновения */
-.proto-ui-toast.hide {
-	animation: proto-ui-toast-out .2s forwards;
+.vl-toast.hide {
+	animation: vl-toast-out .2s forwards;
 }
 
-@keyframes proto-ui-toast-out {
+@keyframes vl-toast-out {
 	to {
 		opacity: 0;
 		transform: translateY(10px);
@@ -308,23 +308,23 @@ label, button,
 }
 
 /* Модификаторы */
-.proto-ui-toast--success {
+.vl-toast--success {
 	background: #16a34a;
 }
 
-.proto-ui-toast--error {
+.vl-toast--error {
 	background: #dc2626;
 }
 
-.proto-ui-toast--warning {
+.vl-toast--warning {
 	background: #d97706;
 }
 
-.proto-ui-toast--info {
+.vl-toast--info {
 	background: #2563eb;
 }
 
-.proto-ui-toast-icon {
+.vl-toast-icon {
 	margin-right: 6px;
 }
 
@@ -335,16 +335,16 @@ label, button,
 */
 
 /* Убираем стандартную стрелку */
-.proto-ui-accordion summary {
+.vl-accordion summary {
 	list-style: none;
 }
 
-.proto-ui-accordion summary::-webkit-details-marker {
+.vl-accordion summary::-webkit-details-marker {
 	display: none;
 }
 
 /* Стили заголовка */
-.proto-ui-accordion-header {
+.vl-accordion-header {
 	cursor: pointer;
 	padding: 12px;
 	background: #f5f5f5;
@@ -354,7 +354,7 @@ label, button,
 }
 
 /* Контент */
-.proto-ui-accordion-body {
+.vl-accordion-body {
 	padding: 12px;
 	border: 1px solid #ddd;
 	border-top: none;
@@ -363,7 +363,7 @@ label, button,
 
 /* Индикатор стрелки */
 
-.proto-ui-accordion-header::after {
+.vl-accordion-header::after {
 	content: "+";
 	float: right;
 	transition: transform .2s;
@@ -371,8 +371,8 @@ label, button,
 
 /* Когда открыт details[open] — это встроенное состояние. */
 
-.proto-ui-accordion-item[open] 
-.proto-ui-accordion-header::after {
+.vl-accordion-item[open] 
+.vl-accordion-header::after {
 	
 	content: "−";
 }
@@ -384,7 +384,7 @@ label, button,
 	╚═════════════════╝
 */
 
-.proto-ui-modal {
+.vl-modal {
 	
 	border: none;
 	padding: 0;
@@ -396,30 +396,30 @@ label, button,
 }
 
 /* Затемнение фона. dialog имеет специальный псевдоэлемент ::backdrop, который работает только у <dialog> */
-.proto-ui-modal::backdrop {
+.vl-modal::backdrop {
 	background: rgba(0,0,0,.4);
 	backdrop-filter: blur(2px);
 }
 
-.proto-ui-modal-content {
+.vl-modal-content {
 	background: white;
 	padding: 16px;
 }
 
-.proto-ui-modal-header {
+.vl-modal-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 12px;
 }
 
-.proto-ui-modal-footer {
+.vl-modal-footer {
 	margin-top: 16px;
 	text-align: right;
 }
 
 /* анимация */
-.proto-ui-modal[open] {
+.vl-modal[open] {
 	animation: modal-in .15s ease;
 }
 
@@ -446,20 +446,20 @@ label, button,
 
 /* Активная вкладка: */
 
-.proto-ui-tab.is-active {
+.vl-tab.is-active {
 	border-bottom: 2px solid #3b82f6;
 	font-weight: 500;
 }
 
 /* Панели: */
 
-.proto-ui-tab-panel {
+.vl-tab-panel {
 	display: none;
 }
 
 /* Активная панель: */
 
-.proto-ui-tab-panel.is-active {
+.vl-tab-panel.is-active {
 	display: block;
 }
 
@@ -470,13 +470,13 @@ label, button,
 */
 
 /* Контейнер */
-.proto-ui-dropdown {
+.vl-dropdown {
 	position: relative;
 	display: inline-block;
 }
 
 /* Меню */
-.proto-ui-dropdown-menu {
+.vl-dropdown-menu {
 	
 	position: absolute;
 	
@@ -503,7 +503,7 @@ label, button,
 }
 
 /* Показ меню */
-.proto-ui-dropdown:focus-within .proto-ui-dropdown-menu {
+.vl-dropdown:focus-within .vl-dropdown-menu {
 	
 	opacity: 1;
 	pointer-events: auto;
@@ -512,7 +512,7 @@ label, button,
 }
 
 /* Пункты меню */
-.proto-ui-dropdown-item {
+.vl-dropdown-item {
 	
 	width: 100%;
 	
@@ -528,7 +528,7 @@ label, button,
 	cursor: pointer;
 }
 
-.proto-ui-dropdown-item:hover {
+.vl-dropdown-item:hover {
 	background: #f3f4f6;
 }
 
@@ -551,7 +551,7 @@ label, button,
 */
 
 /* Сброс стандартного вида */
-.proto-ui-range {
+.vl-range {
 	width: 100%;
 	
 	appearance: none;
@@ -565,14 +565,14 @@ label, button,
 /* Chrome / Edge / Safari используют: */
 
 ::-webkit-slider-runnable-track
-.proto-ui-range::-webkit-slider-runnable-track {
+.vl-range::-webkit-slider-runnable-track {
 	height: 6px;
 	background: #ddd;
 	border-radius: 999px;
 }
 
 /* Ползунок (thumb) */
-.proto-ui-range::-webkit-slider-thumb {
+.vl-range::-webkit-slider-thumb {
 	appearance: none;
 	
 	width: 16px;
@@ -590,7 +590,7 @@ label, button,
 /* Firefox использует другие псевдоэлементы. */
 
 /* track */
-.proto-ui-range::-moz-range-track {
+.vl-range::-moz-range-track {
 	
 	height: 6px;
 	
@@ -600,7 +600,7 @@ label, button,
 }
 
 /* thumb */
-.proto-ui-range::-moz-range-thumb {
+.vl-range::-moz-range-thumb {
 	
 	width: 16px;
 	height: 16px;
@@ -618,7 +618,7 @@ label, button,
 /* Чтобы левая часть была окрашена ██████──────: */
 /* 6. Добавляем CSS переменную */
 
-.proto-ui-range {
+.vl-range {
 	--range-progress: 40%;
 	background:
 	
@@ -639,11 +639,11 @@ label, button,
 	╚════════════════════╝
 */
 
-.proto-ui-password {
+.vl-password {
 	position: relative;
 }
 
-.proto-ui-password-toggle {
+.vl-password-toggle {
 	
 	position: absolute;
 	
@@ -658,7 +658,7 @@ label, button,
 	cursor: pointer;
 }
 
-.proto-ui-password .proto-ui-input {
+.vl-password .vl-input {
 	padding-right: 36px;
 }
 
@@ -669,7 +669,7 @@ label, button,
 	╚═════════════════╝
 */
 
-.proto-ui-input {
+.vl-input {
 	width: 90%;
 	
 	padding: 8px 12px;
@@ -688,21 +688,21 @@ label, button,
     box-shadow .15s;
 }
 
-.proto-ui-input:focus {
+.vl-input:focus {
 	border-color: #3b82f6;
 	
 	box-shadow: 
     0 0 0 2px rgba(59,130,246,.2);
 }
 
-.proto-ui-input:disabled {
+.vl-input:disabled {
 	background: #f5f5f5;
 	color: #999;
 	
 	cursor: not-allowed;
 }
 
-.proto-ui-input--error {
+.vl-input--error {
 	border-color: #ef4444;
 }
 
@@ -714,7 +714,7 @@ label, button,
 	╚══════════════════╝
 */
 
-.proto-ui-button {
+.vl-button {
 	appearance: none;
 	border: 1px solid var(--ui-color-border);
 	border-radius: var(--radius-btn);
@@ -731,18 +731,18 @@ label, button,
 	transition: var(--ui-transition);
 }
 
-.proto-ui-button:hover {
+.vl-button:hover {
 	
 	border-color: var(--ui-color-primary);
 }
 
-.proto-ui-button:focus-visible {
+.vl-button:focus-visible {
 	
 	outline: 2px solid var(--ui-color-primary);
 	outline-offset: 2px;
 }
 
-.proto-ui-button--primary {
+.vl-button--primary {
 	
 	background: var(--ui-color-primary);
 	border-color: var(--ui-color-primary);
@@ -750,18 +750,18 @@ label, button,
 	color: white;
 }
 
-.proto-ui-button--primary:hover {
+.vl-button--primary:hover {
 	filter: brightness(0.95);
 }
 
-.proto-ui-button--danger {
+.vl-button--danger {
 	background: var(--ui-color-danger);
 	border-color: var(--ui-color-danger);
 	
 	color: white;
 }
 
-.proto-ui-button:disabled {
+.vl-button:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
 }
@@ -774,7 +774,7 @@ label, button,
 	╚══════════════════╝
 */
 
-.proto-ui-switch {
+.vl-switch {
 	position: relative;
 	display: inline-block;
 	
@@ -783,14 +783,14 @@ label, button,
 }
 
 /* Скрываем стандартный checkbox */
-.proto-ui-switch-input {
+.vl-switch-input {
 	opacity: 0;
 	width: 0;
 	height: 0;
 }
 
 /* Основная "дорожка" */
-.proto-ui-switch-slider {
+.vl-switch-slider {
 	position: absolute;
 	
 	top: 0;
@@ -807,7 +807,7 @@ label, button,
 }
 
 /* Кружок переключателя */
-.proto-ui-switch-slider::before {
+.vl-switch-slider::before {
 	
 	content: "";
 	
@@ -826,16 +826,16 @@ label, button,
 }
 
 /* Когда переключатель включён */
-.proto-ui-switch-input:checked + .proto-ui-switch-slider {
+.vl-switch-input:checked + .vl-switch-slider {
 	background: var(--ui-color-primary);
 }
 
 /* Движение кружка, создаёт плавный сдвиг вправо. */
-.proto-ui-switch-input:checked + .proto-ui-switch-slider::before {
+.vl-switch-input:checked + .vl-switch-slider::before {
 	transform: translateX(20px);
 }
 
-.proto-ui-switch-slider:hover {
+.vl-switch-slider:hover {
 	opacity: 0.9;
 }
 
@@ -847,7 +847,7 @@ label, button,
 */
 
 /* Базовый чекбокс */
-.proto-ui-checkbox {
+.vl-checkbox {
 	appearance: none;
 	
 	background: var(--ui-color-bg);
@@ -865,7 +865,7 @@ label, button,
 }
 
 /* Кружок внутри (knob) */
-.proto-ui-checkbox::after {
+.vl-checkbox::after {
 	content: "";
 	
 	position: absolute;
@@ -884,29 +884,29 @@ label, button,
 }
 
 /* checked */
-.proto-ui-checkbox:checked {
+.vl-checkbox:checked {
 	border-color: var(--ui-color-primary);
 }
 
 /* Кружок уезжает вправо */
-.proto-ui-checkbox:checked::after {
+.vl-checkbox:checked::after {
 	left: calc(100% - 17px);
 	background: var(--ui-color-primary);
 }
 
 /* Hover-effect */
-.proto-ui-checkbox:hover {
+.vl-checkbox:hover {
 	border-color: var(--ui-color-primary);
 }
 
 /* Focus (очень важный UX) */
-.proto-ui-checkbox:focus-visible {
+.vl-checkbox:focus-visible {
 	outline: 2px solid var(--ui-color-primary);
 	outline-offset: 2px;
 }
 
 /* disabled состояние */
-.proto-ui-checkbox:disabled {
+.vl-checkbox:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
 }
@@ -917,7 +917,7 @@ label, button,
 	╚═════════════════╝
 */
 
-.proto-ui-radio {
+.vl-radio {
 	appearance: none;
 	
 	width:		calc(18px * var(--ui-size, 1));
@@ -933,7 +933,7 @@ label, button,
 	transition: var(--ui-transition);
 }
 
-.proto-ui-radio::after  {
+.vl-radio::after  {
 	content: "";
 	
 	position: absolute;
@@ -953,19 +953,19 @@ label, button,
 	transition: var(--ui-transition);
 }
 
-.proto-ui-radio:checked {
+.vl-radio:checked {
 	border-color: var(--ui-color-primary);
 }
 
-.proto-ui-radio:checked::after {
+.vl-radio:checked::after {
 	transform: translate(-50%, -50%) scale(1);
 }
 
-.proto-ui-radio:hover {
+.vl-radio:hover {
 	border-color: var(--ui-color-primary);
 }
 
-.proto-ui-radio:focus-visible {
+.vl-radio:focus-visible {
 	outline: 2px solid var(--ui-color-primary);
 	outline-offset: 2px;
 }
@@ -974,7 +974,7 @@ label, button,
 
 /* Чтобы красиво выровнять текст. */
 
-.proto-ui-radio-wrapper {
+.vl-radio-wrapper {
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;
@@ -982,7 +982,7 @@ label, button,
 	cursor: pointer;
 }
 
-.proto-ui-radio:disabled {
+.vl-radio:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
 }

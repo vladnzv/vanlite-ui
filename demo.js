@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
 	vl1.toast("Ошибка", "error", 5000);
 	vl1.toast("Предупреждение!", "warning", 5000);
 	vl1.toast("Просто информация", "info", 5000);
-	vl1.animateCircleProgress(".proto-ui-progress-circle", 10);
+	vl1.animateCircleProgress(".vl-progress-circle", 10);
 });
 
 function skeletonDemo() {
