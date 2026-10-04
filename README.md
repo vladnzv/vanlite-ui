@@ -70,7 +70,7 @@ Planned improvements:
     • Theme customization via CSS variables
 
 License
-MIT License
+Apache-2.0
 
 Created by Vladislav Nazarov
 GitHub: github.com/vladnzv
