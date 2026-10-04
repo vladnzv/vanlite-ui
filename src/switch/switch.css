@@ -1,0 +1,100 @@
+:root {
+    --vl-switch-width: 42px;
+    --vl-switch-height: 22px;
+    --vl-switch-thumb-size: 16px;
+    --vl-switch-padding: 3px;
+}
+
+.vl-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    margin: 2px;
+}
+
+/* Native checkbox */
+
+.vl-switch-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Track */
+
+.vl-switch-slider {
+    position: relative;
+
+    flex: 0 0 auto;
+
+    width: var(--vl-switch-width);
+    height: var(--vl-switch-height);
+
+    background: var(--ui-color-border);
+    border-radius: var(--radius-ui);
+
+    transition: var(--ui-transition);
+}
+
+/* Knob */
+
+.vl-switch-slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: var(--vl-switch-thumb-size);
+    height: var(--vl-switch-thumb-size);
+
+    top: var(--vl-switch-padding);
+    left: var(--vl-switch-padding);
+
+    background: #fff;
+    border-radius: var(--radius-inner);
+
+    transition: var(--ui-transition);
+}
+
+/* ON */
+
+.vl-switch-input:checked + .vl-switch-slider {
+    background: var(--ui-color-primary);
+}
+
+.vl-switch-input:checked + .vl-switch-slider::before {
+    transform: translateX(20px);
+}
+
+
+/* Hover */
+
+.vl-switch:hover .vl-switch-slider {
+    opacity: 0.9;
+}
+
+/* Focus */
+
+.vl-switch-input:focus-visible + .vl-switch-slider {
+    outline: 2px solid var(--ui-color-primary);
+    outline-offset: 2px;
+}
+
+/* Disabled */
+
+.vl-switch-input:disabled + .vl-switch-slider {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.vl-switch-input:disabled ~ .vl-switch-text {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

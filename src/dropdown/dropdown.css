@@ -1,0 +1,65 @@
+/*
+	╔════════════════════╗
+	║ dropdown component ║
+	╚════════════════════╝
+*/
+
+/* Container */
+.vl-dropdown-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+/* Menu */
+.vl-dropdown {
+	
+	position: absolute;
+	
+	top: 100%;
+	left: 0;
+	
+	min-width: 160px;	
+	padding: 4px;	
+	background: white;	
+	border: 1px solid #ddd;
+	border-radius: 6px;	
+	box-shadow: 0 4px 10px rgba(0,0,0,.1);	
+	opacity: 0;
+	pointer-events: none;	
+	transform: translateY(6px);	
+	transition: .15s;
+}
+
+/* Show menu */
+.vl-dropdown-wrapper:focus-within .vl-dropdown {
+	
+	opacity: 1;
+	pointer-events: auto;	
+	transform: translateY(0);
+}
+
+/* Menu items */
+.vl-dropdown-item {
+	width: 100%;	
+	padding: 6px 10px;	
+	border: none;
+	background: none;	
+	text-align: left;	
+	border-radius: 4px;	
+	cursor: pointer;
+}
+
+.vl-dropdown-item:hover {
+	background: #f3f4f6;
+}
+
+/*
+	Как это работает
+	клик на кнопку
+	↓
+	кнопка получает focus
+	↓
+	:focus-within активируется
+	↓
+	меню открывается
+*/

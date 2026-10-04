@@ -1,225 +1,138 @@
-class Vanlite {
-	static author = 'Vladislav Nazarov';
-	static version = '1.0.1';
+// Load the list of modules to load
+const modulesRegistry = [
+	() => import('./core/libs.js'),
+	
+	() => import('./modal/modal.js'),
+	() => import('./toast/toast.js'),
+	() => import('./switch/switch.js'),
+	
+	() => import('./button/button.js'),
+	() => import('./radio/radio.js'),
+	
+	() => import('./checkbox/checkbox.js'),
+	() => import('./input/input.js'),
+	() => import('./range/range.js'),
+	
+	() => import('./progress/progress.js'),
+	() => import('./accordion/accordion.js'),
+	() => import('./tabs/tabs.js'),
+	() => import('./dropdown/dropdown.js'),
+	() => import('./card/card.js'),
+];
+
+import Libs from './core/libs.js'
+
+/**
+	* System module loader.
+	*
+	* Responsible for dynamically loading modules from modulesRegistry,
+	* validating their contract, and initializing them.
+	*
+	* Keeps a list of successfully loaded modules and generates a report
+	* on the loading results.
+	*
+	* Contains no business logic and knows nothing about the internal structure of modules.
+*/
+export class Vanlite {
 	
 	constructor() {
+		this.modules = [];
+		this.report = [];
+	}
+	
+	/**
+		* Loads all modules from modulesRegistry.
+		*
+		* Sequentially loads each module,
+		* outputs information about the process to the console, and returns
+		* a list of successfully loaded (and failed to load) modules.
+		*
+		* @returns {Promise<Object[]>}
+	*/
+	async loadAll() {
+		console.group('Vanlite-UI');
 		
-	}
-	
-	run() {
-		window.addEventListener('load', () => {
-			this.setPageState();
-			document.querySelectorAll('[data-ui="vl-range"]')				.forEach(range		=> this.rangeUpdate				(range));
-			document.querySelectorAll('[data-ui="vl-password-toggle"]')	.forEach(btn		=> this.hPassToggle				(btn));
-			document.querySelectorAll('[data-ui="vl-tabs"]')				.forEach(tabs 		=> this.hTabs					(tabs));
-			document.querySelectorAll('[data-modal-open]')						.forEach(btn 		=> this.hModalOpen				(btn));
-			document.querySelectorAll('[data-modal-close]')						.forEach(btn 		=> this.hModalClose				(btn));
-			document.querySelectorAll('[data-ui="vl-progress"]')			.forEach(progress 	=> this.valueProgressBarSet		(progress));
-			document.querySelectorAll('[data-ui="vl-progress-circle"]')	.forEach(circle 	=> this.valueProgressCircleSet	(circle));
-			
-			document.querySelector('[data-ui="switch-thema"]')					.addEventListener('change', this.changeTheme);
-			document.querySelector('[data-ui="switch-skin"]')					.addEventListener('change', this.changeSkin);
-		});
-	}
-	
-	setPageState() {
-		const skin = document.querySelector('[data-ui="switch-skin"]');
-		const thema = document.querySelector('[data-ui="switch-thema"]');
-
-		if (skin) {
-			document.body.setAttribute('data-skin', skin.checked ? 'rounded' : 'flat');
+		for (const loadFn of modulesRegistry) {
+			await this.#load(loadFn);
 		}
-		if (thema){
-			document.body.setAttribute('data-theme', thema.checked ? 'dark' : 'light');
-		}
+		
+		console.groupEnd();
+		return this.modules;
 	}
 	
-	rangeUpdate(range) {
-		const update = () => {
-			const percent =
-			(range.value - range.min) /
-			(range.max - range.min) * 100;
+	/**
+		* Loads a single module.
+		*
+		* Can be used for partial or dynamic
+		* module loading outside the general loadAll() process.
+		*
+		* @param {Function} loadFn Dynamic import function.
+		* @returns {Promise<Object|null>}
+	*/
+	async loadModule(loadFn) {
+		return this.#load(loadFn);
+	}
+	
+	/**
+		* Loads and initializes a single module.
+		*
+		* Workflow:
+		* 1. Dynamically imports the module.
+		* 2. Validates the exported object.
+		* 3. Checks for the required identifier.
+		* 4. Calls init(), if it exists.
+		* 5. Adds the module to the list of loaded modules.
+		* 6. Adds an entry to the report.
+		*
+		* If an error occurs, the information is saved
+		* in the report, and the method returns null.
+		*
+		* @param {Function} loadFn Dynamic import function.
+		* @returns {Promise<Object|null>}
+	*/
+	async #load(loadFn) {
+		try {
+			const result = await loadFn();
+			// Safely get the default export using the optional chaining operator "?."
+			// If result is null or undefined,
+			// undefined will be returned without throwing an error.
+			const module = result?.default;
 			
-			range.style.setProperty(
-				'--range-progress',
-				percent + '%'
-			);
-		};
-		update();
-		range.addEventListener('input', update);
-	}
-	
-	hPassToggle (btn) {
-		btn.addEventListener('click', () => {
-			const input = btn.parentElement.querySelector('input');
-			input.type =
-			input.type === 'password'
-			? 'text'
-			: 'password';
-		});
-	}
-	
-	hTabs(tabs) {
-		const buttons = tabs.querySelectorAll('.vl-tab');
-		const panels  = tabs.querySelectorAll('.vl-tab-panel');
-		
-		buttons.forEach(btn => {
-			
-			btn.addEventListener('click', () => {
-				
-				const name = btn.dataset.tab;
-				
-				buttons.forEach(b =>
-					b.classList.remove('is-active')
-				);
-				
-				panels.forEach(p =>
-					p.classList.remove('is-active')
-				);
-				
-				btn.classList.add('is-active');
-				
-				tabs.querySelector(
-					`.vl-tab-panel[data-tab="${name}"]`
-				)
-				.classList.add('is-active');
-				
-			});
-		});
-	}
-	
-	hModalOpen(btn) {
-		btn.addEventListener('click', () => {
-			const id = btn.dataset.modalOpen;
-			document.querySelector(`[data-modal="${id}"]`).showModal();
-		});
-	}
-	
-	hModalClose(btn) {
-		btn.addEventListener('click', () => {
-			btn.closest('dialog').close();
-		});
-	}
-	
-	valueProgressBarSet(progress) {
-		const value = progress.dataset.progress;
-		progress.querySelector('.vl-progress-bar').style.width = value + '%';
-	}
-	
-	valueProgressCircleSet(circle) {
-		const value = circle.dataset.progress;
-		const radius = 45;
-		const circumference = 2 * Math.PI * radius;
-		const offset = circumference - value / 100 * circumference;
-		const progress = circle.querySelector('.vl-progress-value');
-		
-		progress.style.strokeDashoffset = offset;
-		circle.querySelector('.vl-progress-text').textContent = value + "%";
-	}
-	
-	setCircleProgress (el, value) {
-		
-		const radius = 45;
-		const circumference = 2 * Math.PI * radius;
-		
-		const offset =
-		circumference - value / 100 * circumference;
-		
-		const progress =
-		el.querySelector('.vl-progress-value');
-		
-		progress.style.strokeDasharray = circumference;
-		
-		progress.style.strokeDashoffset = offset;
-		
-		el.querySelector('.vl-progress-text')
-		.textContent = Math.round(value) + "%";
-		
-	};
-	
-	animateCircleProgress (selector, seconds = 5) {
-		
-		const el =
-		typeof selector === "string"
-		? document.querySelector(selector)
-		: selector;
-		
-		const duration = seconds * 1000;
-		
-		const start = performance.now();
-		
-		const frame = time => {
-			
-			const progress = Math.min(
-				(time - start) / duration,
-				1
-			);
-			
-			const percent = progress * 100;
-			this.setCircleProgress(el, percent);
-			
-			if (progress < 1) {
-				requestAnimationFrame(frame);
+			if (!module || typeof module !== 'object') {
+				throw new Error('Invalid module export');
 			}
 			
+			if (!module.id) {
+				throw new Error('Module has no id');
+			}
+			
+			await module.init?.(this);
+			
+			this.modules.push(module);
+			this.report.push({ id: module.id, status: 'OK' });
+			this[module.id] = module;
+			
+			console.log(`✔ ${module.id}`);
+			return module;
+			
+			} catch (err) {
+			this.report.push({
+				id: 'unknown',
+				/* id: 'moduleId', */
+				status: 'FAILED',
+				error: err.message
+			});
+			
+			console.error('✖ module load failed', err);
+			return null;
 		}
-		
-		requestAnimationFrame(frame);
-		
-	};
-	
-	changeTheme(){
-		const isDark = event.target.checked;
-		document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
 	}
 	
-	changeSkin(){
-		const isRound = event.target.checked;
-		document.body.setAttribute('data-skin', isRound ? 'rounded' : 'flat');
+	/**
+		* Outputs a summary report
+		* of the module loading results to the console.
+	*/
+	printReport() {
+		console.table(this.report);
 	}
-	
-	toast (message, type = "info", duration = 3000) {
-		
-		const icons = {
-			success:	"✔",
-			error:		"✖",
-			warning:	"⚠",
-			info:		"ℹ",
-		};
-		
-		let container =
-		document.querySelector('.vl-toast-container');
-		
-		if (!container) {
-			
-			container = document.createElement('div');
-			container.className = 'vl-toast-container';
-			
-			document.body.appendChild(container);
-			
-		}
-		
-		const toast = document.createElement('div');
-		
-		toast.className = `vl-toast vl-toast--${type}`;
-		
-		toast.innerHTML =
-		`<span class="vl-toast-icon">${icons[type] || ""}</span>
-		${message}`;
-		
-		container.appendChild(toast);
-		
-		setTimeout(() => {
-			
-			toast.classList.add('hide');
-			
-			setTimeout(() => toast.remove(), 200);
-			
-		}, duration);
-		
-	};
-	
 }
-
-vl = new Vanlite();
-vl.run();

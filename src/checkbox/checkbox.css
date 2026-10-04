@@ -1,0 +1,76 @@
+/*
+	╔════════════════════╗
+	║ Checkbox Component ║
+	╚════════════════════╝
+*/
+
+/* Basic Checkbox */
+.vl-checkbox {
+	appearance: none;
+	
+	background: var(--ui-color-bg);
+	border: var(--ui-thickness-border) solid var(--ui-color-border);
+	
+	border-radius: var(--radius-ui);
+	
+	cursor: pointer;
+	position: relative;
+	
+	transition: var(--ui-transition);
+	
+	width:		calc(42px * var(--ui-size, 1));
+	height:		calc(22px * var(--ui-size, 1));
+}
+
+/* Knob inside */
+.vl-checkbox::after {
+	content: "";
+	
+	position: absolute;
+	top: 50%;
+	left: 3px;
+	
+	border-radius: var(--radius-inner);
+	
+	width: 14px;
+	height: 14px;
+	
+	background: var(--ui-knob-off);
+	
+	transform: translateY(-50%);
+	transition: var(--ui-transition);
+}
+
+/* checked */
+.vl-checkbox:checked {
+	border-color: var(--ui-color-primary);
+}
+
+/* The knob moves to the right */
+.vl-checkbox:checked::after {
+	left: calc(100% - 17px);
+	background: var(--ui-color-primary);
+}
+
+/* Hover-effect */
+.vl-checkbox:hover {
+	border-color: var(--ui-color-primary);
+}
+
+/* Focus (very important for UX) */
+.vl-checkbox:focus-visible {
+	outline: 2px solid var(--ui-color-primary);
+	outline-offset: 2px;
+}
+
+/* disabled state */
+.vl-checkbox:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.vl-checkbox-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}

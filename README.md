@@ -43,6 +43,11 @@ Open settings
 <p>Modal content</p>
 <button onclick="this.closest('dialog').close()">Close</button>
 </dialog>
+Accordion
+<details>
+<summary>What is this?</summary>
+<p>This is an accordion item.</p>
+</details>
 
 Philosophy
 This project focuses on:
@@ -68,6 +73,4 @@ License
 MIT License
 
 Created by Vladislav Nazarov
-
 GitHub: github.com/vladnzv
-

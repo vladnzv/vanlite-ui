@@ -1,0 +1,88 @@
+/*
+	╔═════════════════╗
+	║ Range component ║
+	╚═════════════════╝
+*/
+
+/* Reset the default appearance */
+.vl-range {
+	width: 100%;
+	
+	appearance: none;
+	background: transparent;
+	
+	cursor: pointer;
+}
+
+/* Track */
+
+/* Chrome / Edge / Safari: */
+
+::-webkit-slider-runnable-track
+.vl-range::-webkit-slider-runnable-track {
+	height: 6px;
+	background: #ddd;
+	border-radius: 999px;
+}
+
+/* Thumb */
+.vl-range::-webkit-slider-thumb {
+	appearance: none;
+	
+	width: 16px;
+	height: 16px;
+	
+	background: #3b82f6;
+	
+	border-radius: 50%;
+	
+	cursor: pointer;
+}
+
+/* Firefox support */
+
+/* Firefox uses different pseudo-elements. */
+
+/* track */
+.vl-range::-moz-range-track {
+	
+	height: 6px;
+	
+	background: #ddd;
+	
+	border-radius: 999px;
+}
+
+/* thumb */
+.vl-range::-moz-range-thumb {
+	
+	width: 16px;
+	height: 16px;
+	
+	background: #3b82f6;
+	
+	border: none;
+	
+	border-radius: 50%;
+	
+	cursor: pointer;
+}
+
+/* Colored progress inside the range */
+/* To color the left part: ██████──────: */
+/* 6. Add a CSS variable */
+
+.vl-range {
+	--range-progress: 40%;
+	background:
+	
+    linear-gradient(
+	#3b82f6,
+	#3b82f6
+    ) 0 / var(--range-progress) 100% no-repeat,
+	
+    #ddd;
+	
+	height: 6px;
+	border-radius: 999px;
+}

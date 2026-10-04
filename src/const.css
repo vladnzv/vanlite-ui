@@ -1,0 +1,59 @@
+[data-theme="dark"] {
+	--ui-color-bg: #1f2937;
+	--ui-color-border: #4b5563;
+	
+	--ui-knob-off: #9ca3af;
+	--ui-knob-on: #ffffff;
+}
+
+[data-skin="rounded"] {
+    --radius-ui: 999px;    /* For checkbox und switcher */
+    --radius-inner: 50%;   /* Для внутренних элементов (after/before) */
+    --radius-btn: 6px;     /* For buttons */
+}
+
+[data-skin="flat"] {
+    --radius-ui: 4px;
+    --radius-inner: 3px;
+    --radius-btn: 0px;
+}
+
+/* Специальное исключение для Radio в режиме Flat */
+[data-skin="flat"] .vl-radio::after {
+    --radius-inner: 2px; 
+}
+
+:root {
+	--ui-transition: 0.18s ease;
+	
+	--ui-color-bg: #ffffff;
+	--ui-color-border: #cbd5e1;
+	--ui-thickness-border: 3px;
+	
+	--ui-color-primary: #4f46e5;
+	
+	--ui-knob-off: #94a3b8;
+	--ui-knob-on: #ffffff;
+	
+	--ui-size-sm: 0.85;
+	--ui-size-md: 1;
+	--ui-size-lg: 1.25;
+	
+	--ui-color-danger: red;
+	
+	--range-progress: 40%;
+}
+
+.ui-size--sm {
+	--ui-size: var(--ui-size-sm);
+}
+
+.ui-size--lg {
+	--ui-size: var(--ui-size-lg);
+}
+
+label, button, 
+.vl-accordion-header, .vl-progress-text 
+{
+	user-select: none;
+}

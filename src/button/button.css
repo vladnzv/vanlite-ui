@@ -1,0 +1,56 @@
+.vl-btn {
+	appearance: none;
+	border: 1px solid var(--ui-color-border);
+	border-radius: var(--radius-btn);
+	
+	background: var(--ui-color-bg);
+	color: var(--ui-color-text);
+	
+	padding: 8px 14px;
+	
+	font: inherit;
+	
+	cursor: pointer;
+	
+	transition: var(--ui-transition);
+	
+}
+
+.vl-btn:hover {
+	
+	border-color: var(--ui-color-primary);
+}
+
+.vl-btn:focus-visible {
+	
+	outline: 2px solid var(--ui-color-primary);
+	outline-offset: 2px;
+}
+
+.vl-btn--primary {
+	
+	background: var(--ui-color-primary);
+	border-color: var(--ui-color-primary);
+	
+	color: white;
+}
+
+.vl-btn--primary:hover {
+	filter: brightness(0.95);
+}
+
+.vl-btn--danger {
+	background: var(--ui-color-danger);
+	border-color: var(--ui-color-danger);
+	
+	color: white;
+}
+
+.vl-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.vl-btn:active:not(:disabled) {
+	transform: scale(0.95);
+}

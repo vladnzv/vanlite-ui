@@ -1,0 +1,18 @@
+/*
+	╔═══════════════╗
+	║ Tab component ║
+	╚═══════════════╝
+*/
+
+.vl-tabs-list-item.is-active {
+	border-bottom: 2px solid #3b82f6;
+	font-weight: 500;
+}
+
+.vl-tabs-panel-item {
+	display: none;
+}
+
+.vl-tabs-panel-item.is-active {
+	display: block;
+}

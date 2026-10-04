@@ -1,0 +1,68 @@
+.vl-radio {
+	appearance: none;
+	
+	width:		calc(18px * var(--ui-size, 1));
+	height:		calc(18px * var(--ui-size, 1));
+	
+	border: 2px solid var(--ui-color-border);
+	border-radius: var(--radius-inner);
+	background: var(--ui-color-bg);
+	
+	cursor: pointer;
+	position: relative;
+	
+	transition: var(--ui-transition);
+}
+
+.vl-radio::after  {
+	content: "";
+	
+	position: absolute;
+	
+	width: 8px;
+	height: 8px;
+	
+	top: 50%;
+	left: 50%;
+	
+	border-radius: var(--radius-inner);
+	
+	transform: translate(-50%, -50%) scale(0);
+	
+	background: var(--ui-color-primary);
+	
+	transition: var(--ui-transition);
+}
+
+.vl-radio:checked {
+	border-color: var(--ui-color-primary);
+}
+
+.vl-radio:checked::after {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.vl-radio:hover {
+	border-color: var(--ui-color-primary);
+}
+
+.vl-radio:focus-visible {
+	outline: 2px solid var(--ui-color-primary);
+	outline-offset: 2px;
+}
+
+/* Wrapper */
+
+/* To align the text nicely. */
+
+.vl-radio-wrapper {
+	display: inline-flex;
+	gap: 8px;
+	cursor: pointer;
+	align-items: flex-end;
+}
+
+.vl-radio:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}

@@ -1,0 +1,83 @@
+
+/*
+	╔════════════════════════╗
+	║ Progress-bar component ║
+	╚════════════════════════╝
+*/
+
+.vl-progress {
+	width: 100%;
+	height: 8px;
+	
+	background: #e5e7eb;
+	border-radius: 999px;
+	
+	overflow: hidden;
+}
+
+/* Track: */
+
+.vl-progress-bar {
+	height: 100%;
+	width: 0;
+	
+	background: #3b82f6;
+	
+	transition: width .3s ease;
+}
+
+/*
+	╔════════════════════════════╗
+	║ progress-bar svg component ║
+	╚════════════════════════════╝
+*/
+
+.vl-progress-circle {
+	position: relative;
+	height: 100px;
+}
+
+.vl-progress-circle svg {
+	width: 100%;
+	height: 100%;
+	
+	transform: rotate(-90deg);
+}
+
+/* Circle background: */
+
+.vl-progress-bg {
+	fill: none;
+	stroke: #e5e7eb;
+	stroke-width: 8;
+}
+
+/* Progress: */
+
+.vl-progress-value {
+	fill: none;
+	stroke: #3b82f6;
+	stroke-width: 8;
+	stroke-linecap: round;
+	stroke-dasharray: 283;
+	stroke-dashoffset: 283;
+	transition: stroke-dashoffset .4s ease;
+}
+
+/* Text inside */
+.vl-progress-text {
+	position: absolute;
+	
+	top: 50%;
+	left: 50%;
+	
+	transform: translate(-50%, -50%);
+	
+	font-size: 16px;
+	font-weight: 600;
+	font-family: system-ui;
+	color: #d29500;
+}
+
+
+

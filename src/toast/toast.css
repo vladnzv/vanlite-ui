@@ -1,0 +1,89 @@
+:root {
+    --vl-toast-height: 48px;
+    --vl-toast-padding: 10px 14px;
+    --vl-toast-color: white;
+    --vl-toast-background: #333;
+    --vl-toast-border: none;
+    --vl-toast-radius: 6px;
+    --vl-toast-font-size: 14px;
+    --vl-toast-icon-radius: 35px;
+}
+
+[data-skin="success"] {
+	--vl-toast-background: #16a34a;
+}
+
+[data-skin="error"] {
+	--vl-toast-background: #dc2626;
+}
+
+[data-skin="warning"] {
+	--vl-toast-background: #d97706;
+}
+
+[data-skin="info"] {
+	--vl-toast-background: #213d79;
+}
+
+/* The container will contain all notifications. */
+#vl-toasts-container {
+	position: fixed;
+	
+	right: 20px;
+	bottom: 20px;
+	
+	display: flex;
+	flex-direction: column;
+	
+	gap: 8px;
+	
+	z-index: 9999;
+}
+
+.vl-toast {
+	background: var(--vl-toast-background);
+	color: var(--vl-toast-color);
+	padding: var(--vl-toast-padding);
+	border-radius: var(--vl-toast-radius);
+	font-size: var(--vl-toast-font-size);
+	box-shadow: 0 6px 16px rgba(0,0,0,.2);
+	opacity: 0;
+	transform: translateY(10px);
+	animation: vl-toast-in .2s forwards;
+	display: flex;
+	border-left: 5px solid #37588f; /* Status bar */
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.vl-toast-sign {
+	margin-right: 6px;
+	font-size: 20px;
+	border-radius: 100%;
+	border: 5px double #0df205;
+	width: var(--vl-toast-icon-radius);
+	height: var(--vl-toast-icon-radius);
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	color: #12ff00;
+}
+
+/* Entrance animation */
+@keyframes vl-toast-in {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Exit animation */
+.vl-toast.hide {
+	animation: vl-toast-out .2s forwards;
+}
+
+@keyframes vl-toast-out {
+	to {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+}

@@ -1,0 +1,216 @@
+:root {
+	--vl-header-height: 48px;
+	--vl-header-padding: 0 0 0 10px;
+	--vl-header-color: black;
+	--vl-header-background: #d0e8f9;
+	--vl-header-border: none;
+	--vl-header-blur: blur(3px);
+	--vl-close-color: inherit;
+	--vl-close-hover-background: rgba(255,255,255,.12);
+}
+
+[data-skin="aero"] {
+
+    --vl-header-color: white;
+
+    --vl-header-background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.25),
+            rgba(255,255,255,.05)
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.30),
+            rgba(0,0,0,.55)
+        );
+
+    --vl-header-border: 1px solid rgba(255,255,255,.18);
+}
+
+[data-skin="glass"] {
+
+    --vl-header-color: #2b2f2e;
+
+    --vl-header-background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.40),
+            rgba(0,0,0,.18)
+        );
+
+    --vl-header-border: 1px solid rgba(255,255,255,.18);
+}
+
+[data-skin="aero-blue"] {
+
+    --vl-header-color: black;
+
+    --vl-header-background:
+		linear-gradient(
+		    to bottom,
+		    rgba(150,220,255,.30),
+		    rgba(60,150,255,.08)
+		),
+		
+		linear-gradient(
+		    to bottom,
+		    rgba(0,0,0,.28),
+		    rgba(0,0,0,.50)
+		);
+
+    --vl-header-border: 1px solid rgba(255,255,255,.18);
+}
+
+[data-skin="glass-dark"] {
+
+    --vl-header-color: black;
+
+    --vl-header-background:
+		linear-gradient(
+		    to bottom,
+		    rgba(255,255,255,.10),
+		    rgba(255,255,255,0)
+		),
+		
+		linear-gradient(
+		    to bottom,
+		    rgba(0,0,0,.45),
+		    rgba(0,0,0,.25)
+		);
+
+	--vl-header-blur: blur(22px);
+
+    --vl-header-border:
+        1px solid rgba(255,255,255,.18);
+}
+
+[data-skin="light"] {
+
+    --vl-header-color:#222;
+
+    --vl-header-background:
+		linear-gradient(
+		    to bottom,
+		    rgba(255,255,255,.80),
+		    rgba(255,255,255,.45)
+		);
+
+	--vl-header-border: 1px solid rgba(255,255,255,.18);
+}
+
+[data-skin="win11"] {
+
+    --vl-header-color:#222;
+    --vl-header-background: rgba(255,255,255,.08);
+	--vl-header-border: 1px solid rgba(255,255,255,.15);
+	--vl-header-blur: blur(3px);
+}
+
+#vl-modal {
+	border: none;
+	padding: 0;
+	max-width: 500px;
+	width: 90%;
+}
+
+.vl-modal-wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
+
+/* Затемнение фона. dialog имеет специальный псевдоэлемент ::backdrop, который работает только у <dialog> */
+#vl-modal::backdrop {
+	background: rgba(0,0,0,.4);
+	backdrop-filter: var(--vl-header-blur);
+}
+
+.vl-modal-content {
+	background: white;
+	padding: 5px;
+	height: 94%;
+}
+
+.vl-modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 12px;
+
+	height: var(--vl-header-height);
+	
+	background: var(--vl-header-background);
+	color: var(--vl-header-color);
+	padding: var(--vl-header-padding);
+	border-bottom: var(--vl-header-border);
+	user-select: none;
+}
+
+.vl-modal-title {
+	font-size: 15px;
+	margin: 0;
+}
+
+.vl-modal-close {
+	color: red;
+	padding: 0 15px;
+	cursor: pointer;
+	background-color: transparent;
+	font-size: 150%;
+	border: none;
+	user-select: none;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.vl-modal-close:focus-visible {
+    box-shadow: 0 0 0 2px rgba(255, 69, 27, 0.5);
+}
+
+.vl-modal-close:focus {
+	outline: none;
+}
+
+.vl-modal-close:hover {
+    background-color: #f96e6e;
+    color: white;
+}
+
+.vl-modal-close:active {
+    background-color: #ff451b;
+    color: white;
+    transform: scale(0.95);
+}
+
+.vl-modal-footer {
+	margin-top: 16px;
+	text-align: right;
+	background: var(--vl-header-background);
+	color: var(--vl-header-color);
+	padding: var(--vl-header-padding);
+}
+
+.vl-modal-footer-btn {
+	height: 25px;
+	margin: 3px 3px 3px 2px;
+}
+
+/* Animation */
+.vl-modal[open] {
+	animation: modal-in .15s ease;
+}
+
+@keyframes modal-in {
+	
+	from {
+		opacity: 0;
+		transform: scale(.95);
+	}
+	
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+	
+}

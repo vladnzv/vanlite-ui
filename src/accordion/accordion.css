@@ -1,0 +1,48 @@
+/*
+	╔═════════════════════╗
+	║ Accordion component ║
+	╚═════════════════════╝
+*/
+
+/* Remove the default arrow */
+.vl-accordion summary {
+	list-style: none;
+}
+
+.vl-accordion summary::-webkit-details-marker {
+	display: none;
+}
+
+/* Header styles */
+.vl-accordion-header {
+	cursor: pointer;
+	padding: 12px;
+	background: #f5f5f5;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	font-weight: 500;
+}
+
+/* Content */
+.vl-accordion-body {
+	padding: 12px;
+	border: 1px solid #ddd;
+	border-top: none;
+	border-radius: 0 0 6px 6px;
+}
+
+/* Arrow indicator */
+
+.vl-accordion-header::after {
+	content: "+";
+	float: right;
+	transition: transform .2s;
+}
+
+/* When details[open] is active, this is a built-in state. */
+
+.vl-accordion-item[open] 
+.vl-accordion-header::after {
+	
+	content: "−";
+}
