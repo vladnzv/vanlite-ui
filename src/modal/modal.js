@@ -19,12 +19,12 @@ export default {
 
     insert(container, config) {
         this.createContainerIfNoExist(container);
-        container = document.querySelector('#vl-modal');
+        container = document.querySelector(`#${this.identifier}`);
 		this.close(container);
 		
 		const elem = this.create(config);
 		this.app.libs.apply(elem, config);
-		this.apply(elem, config);
+		this.apply(elem, config, container);
 		container.append(elem);
 		
         container.showModal();
@@ -71,7 +71,7 @@ export default {
     },
 	
 	createContainerIfNoExist(root) {
-		if (root.querySelector(`#this.identifier`))
+		if (root.querySelector(`#${this.identifier}`))
 			return;
 		
 		const dialog = root.createElement('dialog')
@@ -79,7 +79,7 @@ export default {
 		root.querySelector('body').append(dialog);
 	},
 
-    apply(root, config) {
+    apply(root, config, container) {
         if (config.width)
             root.style.width = config.width + 'px';
         if (config.height)
@@ -88,11 +88,12 @@ export default {
             this.createBtnClose(root);
         if (config.skin)
             root.dataset.skin = config.skin;
-        if (config.outClose)
-            root.addEventListener('click', e => {
-                if (e.target === root)
-                    this.close(root);
+        if (config.outClose) {
+			container.addEventListener('click', e => {
+                if (e.target === container)
+                    this.close(container);
             });
+		}
     },
 
     getFooter(config) {

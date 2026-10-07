@@ -401,12 +401,20 @@ button,
   padding: 0;
   max-width: 500px;
   width: 90%;
+  min-width: 280px;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  max-height: 85vh;
+  height: fit-content;
+  overflow: hidden;
 }
 .vl-modal-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
+  max-height: 85vh;
+  overflow: hidden;
 }
 #vl-modal::backdrop {
   background: rgba(0, 0, 0, .4);
@@ -414,14 +422,18 @@ button,
 }
 .vl-modal-content {
   background: white;
-  padding: 5px;
-  height: 94%;
+  padding: 12px;
+  flex: 1 1 auto;
+  overflow: auto !important;
+  box-sizing: border-box;
 }
 .vl-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
+  margin-bottom: 0;
+  flex-shrink: 0;
   height: var(--vl-header-height);
   background: var(--vl-header-background);
   color: var(--vl-header-color);
@@ -460,14 +472,18 @@ button,
 }
 .vl-modal-footer {
   margin-top: 16px;
+  margin-top: 0;
   text-align: right;
   background: var(--vl-header-background);
   color: var(--vl-header-color);
   padding: var(--vl-header-padding);
+  flex-shrink: 0;
 }
 .vl-modal-footer-btn {
-  height: 25px;
-  margin: 3px 3px 3px 2px;
+  height: auto;
+  margin: 4px 3px;
+  padding: 2px 8px;
+  cursor: pointer;
 }
 .vl-modal[open] {
   animation: modal-in .15s ease;

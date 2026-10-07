@@ -368,7 +368,7 @@ document.querySelector('.test_modal').addEventListener('click', () => {
         skin: 'aero',
         title: 'My First Modal Window Test',
         content: '<form class="mw__form" data-js="bm__form"><fieldset><legend>Параметры закладки</legend><label class="mw__field"><span>Имя закладки</span><textarea name="name" required="">YouTube</textarea></label><label class="mw__field mw__field--checkbox"><input type="checkbox" class="custom_checkbox" name="is_enabled"><span>Закладка активна</span></label></fieldset><input type="hidden" name="bookmark_id" value="bm_1780874363414_807"></form>',
-        outClose: false,
+		outClose: true,
         btnClose: true,
         btnFooter: [{
             label: 'Save',

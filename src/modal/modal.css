@@ -112,16 +112,29 @@
 	padding: 0;
 	max-width: 500px;
 	width: 90%;
+	min-width: 280px; /* Protection against excessive window compression */
+	
+	/* Centers the modal window regardless of user settings. */
+	position: fixed;
+	inset: 0;
+	margin: auto;
+	
+	max-height: 85vh; /* Window height limit */
+	height: fit-content; /* Гарантирует правильный расчет высоты под содержимое */
+	overflow: hidden;
 }
 
 .vl-modal-wrapper{
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	height: 100%;
+	
+	max-height: 85vh;
+	overflow: hidden;
 }
 
-/* Затемнение фона. dialog имеет специальный псевдоэлемент ::backdrop, который работает только у <dialog> */
+/* Background dimming. The dialog element has a special ::backdrop pseudo-element that works only with <dialog>. */
 #vl-modal::backdrop {
 	background: rgba(0,0,0,.4);
 	backdrop-filter: var(--vl-header-blur);
@@ -129,8 +142,11 @@
 
 .vl-modal-content {
 	background: white;
-	padding: 5px;
-	height: 94%;
+	padding: 12px;
+	/* height: 94%; */
+	flex: 1 1 auto; /* Occupies all available space */
+	overflow: auto!important;
+	box-sizing: border-box;
 }
 
 .vl-modal-header {
@@ -138,6 +154,8 @@
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 12px;
+	margin-bottom: 0;
+	flex-shrink: 0; /* Doesn’t shrink or disappear when scrolling. */
 
 	height: var(--vl-header-height);
 	
@@ -185,15 +203,20 @@
 
 .vl-modal-footer {
 	margin-top: 16px;
+	margin-top: 0;
 	text-align: right;
 	background: var(--vl-header-background);
 	color: var(--vl-header-color);
 	padding: var(--vl-header-padding);
+	
+	flex-shrink: 0; /* Doesn’t shrink or disappear when scrolling. */
 }
 
 .vl-modal-footer-btn {
-	height: 25px;
-	margin: 3px 3px 3px 2px;
+	height: auto;
+	margin: 4px 3px;
+	padding: 2px 8px;
+	cursor: pointer;
 }
 
 /* Animation */
