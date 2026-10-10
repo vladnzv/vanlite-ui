@@ -217,7 +217,8 @@ button,
   opacity: 0;
   pointer-events: none;
   transform: translateY(6px);
-  transition: .15s;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 100;
 }
 .vl-dropdown-wrapper:focus-within .vl-dropdown {
   opacity: 1;
@@ -232,9 +233,16 @@ button,
   text-align: left;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
 }
-.vl-dropdown-item:hover {
+.vl-dropdown-item:hover,
+.vl-dropdown-item:focus {
   background: #f3f4f6;
+  outline: none;
+}
+.vl-dropdown-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* src/input/input.css */
