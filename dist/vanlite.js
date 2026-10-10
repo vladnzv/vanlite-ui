@@ -716,35 +716,44 @@ var VanliteBundle = (() => {
       container.append(elem);
     },
     apply(elem, config) {
-      if (config.callback)
-        elem.addEventListener("click", config.callback);
+      if (typeof config.callback === "function")
+        elem.addEventListener("click", (e) => {
+          config.callback(e);
+          if (elem instanceof HTMLElement) {
+            elem.blur();
+          }
+        });
     },
     create(config) {
-      let result = document.createElement("div");
+      const result = document.createElement("div");
       result.classList.add(this.wrapper);
-      let btn = document.createElement("button");
+      const btn = document.createElement("button");
       btn.classList.add("vl-btn");
       btn.classList.add(this.identifier + "-trigger");
-      let trigger_name = config.trigger_name || "";
+      btn.setAttribute("aria-haspopup", "true");
+      const trigger_name = config.trigger_name || "";
       btn.textContent = trigger_name;
-      let elem_drop = document.createElement("div");
+      const elem_drop = document.createElement("div");
       elem_drop.classList.add(this.identifier);
-      this.createItems(elem_drop, config);
+      elem_drop.setAttribute("role", "menu");
+      this.createItems(elem_drop, config.items || []);
       result.append(btn);
       result.append(elem_drop);
-      console.log(result);
       return result;
     },
-    createItems(root, config) {
-      const items = config.items;
-      for (let i = 0; i < items.length; i++) {
-        let item = document.createElement("button");
-        item.classList.add("vl-dropdown-item");
-        item.dataset.id = items[i]["id"];
-        item.textContent = items[i]["title"];
-        this.apply(item, config.items[i]);
+    createItems(root, items = []) {
+      items.forEach((itemData) => {
+        const item = document.createElement("button");
+        item.classList.add(`${this.identifier}-item`);
+        item.setAttribute("role", "menuitem");
+        if (itemData.id)
+          item.dataset.id = itemData.id;
+        item.textContent = itemData.title || "";
+        if (itemData.disabled)
+          item.disabled = true;
+        this.apply(item, itemData);
         root.append(item);
-      }
+      });
     }
   };
 
