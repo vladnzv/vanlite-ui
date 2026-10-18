@@ -1,3 +1,8 @@
+:root {
+	--bg-surface: #8386fb;
+	--border-color: #1b8d9b;
+}
+
 /* CSS Reset & Flexbox Sticky footer */
 * {
 	box-sizing: border-box;
@@ -18,13 +23,36 @@ body {
 	color: #212529;
 }
 
-main {
+main.app-container {
 	flex: 1;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	/* justify-content: center; */
-	padding: 2rem;
+	flex-direction: row; /* On PC — two columns side by side */
+	width: 100%;
+	max-width: 1400px;
+	margin: 0 auto;
+	gap: 1.5rem;
+	padding: 1.5rem;
+	align-items: flex-start;
+}
+
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  background: var(--bg-surface);
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  height: fit-content;
+}
+
+.sandbox-preview {
+	flex: 1;
+	min-width: 0; /* Prevents Flexbox overflow */
+	background: var(--bg-surface);
+	border-radius: 12px;
+	padding: 1.5rem;
+	border: 1px solid var(--border-color);
+	width: 100%;
 }
 
 footer {
@@ -35,7 +63,7 @@ footer {
 }
 
 footer a {
-	color: @63b3ed;
+	color: #63b3ed;
 	text-decoration: none;
 }
 
@@ -46,11 +74,15 @@ footer a:hover {
 
 header {
     background-color: #ffffff;
-	border-bottom: 1px solid #e1e4e8;
-	padding: 1rem 2rem;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+    border-bottom: 1px solid #e1e4e8;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .progress-wrapper {
@@ -64,4 +96,23 @@ header {
 	gap: 10px;
 	flex-direction: column;
 	margin: 30px 0;
+}
+
+/* 📱 MOBILE LAYOUT (Screen < 768px) */
+@media (max-width: 768px) {
+	main.app-container {
+		flex-direction: column; /* Converting columns into rows */
+		padding: 1rem;
+		gap: 1rem;
+	}
+
+	.sidebar {
+		width: 100%; /* Takes up the full width on smartphones */
+	}
+
+	header {
+		flex-wrap: wrap; /* To ensure the logo, theme, and languages fit in the header */
+		gap: 0.5rem;
+		padding: 0.75rem 1rem;
+	}
 }
