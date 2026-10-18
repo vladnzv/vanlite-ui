@@ -16,23 +16,35 @@ function createPage() {
 
 function createMain() {
 	const root = document.createElement('main');
+	root.className = 'app-container';
 	const count_lib_elems = Object.keys(formBuilders).length;
 	
 	root.innerHTML = 
-`<div class="progress-wrapper">
-	<div class="progress-title">
-		<span>Progress research of library</span><br>
-		<span>Count of elements: </span><span id="count_vl_elems">${count_lib_elems}</span><br>
-		<span>Count of used elements: </span><span id="count_used_elems">0</span><br>
+`<aside class="sidebar">
+	<div class="components-list">
+		<h3>Added components</h3>
+		<ul id="added-list"></ul>
 	</div>
-	<div id="main-progress"></div>
-</div>
+</aside>
 
-<div id="open-window"></div>
+<section class="sandbox-preview">
+	<div class="progress-wrapper">
+		<div class="progress-title">
+			<span>Progress research of library</span><br>
+			<span>Count of elements: </span><span id="count_vl_elems">${count_lib_elems}</span><br>
+			<span>Count of used elements: </span><span id="count_used_elems">0</span><br>
+		</div>
+		<div id="main-progress"></div>
+	</div>
+	
+	<div id="open-window"></div>
 
-<div id="sandbox" class="demo-sandbox">
-	<span style="color: #a0aec0;">Generated components will appear here.</span>
-</div>`;
+	<h2>Sandbox</h2>
+	<div id="sandbox" class="demo-sandbox">
+		<span style="color: #031020;">Generated components will appear here.</span>
+	</div>
+</section>
+`;
 	
 	const progress_config = {
 		value: 0,
@@ -407,6 +419,8 @@ function makeFormDropdown() {
 <span>ID: </span><input class="vl-input" name="id_item" placeholder="Content of item">
 <span>Title: </span><input class="vl-input" name="title_item" placeholder="Title of item">
 
+<span>Dropdowns title: </span><input class="vl-input" name="trigger_name" placeholder="Input title your's element">
+   
 <span>title: </span><input class="vl-input" name="title" placeholder="Input title your's element">
 <span>Name: </span><input class="vl-input" name="name" placeholder="Input name attribute your's element">
 <span>ID: </span><input class="vl-input" name="id" placeholder="Input id attribute your's element">
