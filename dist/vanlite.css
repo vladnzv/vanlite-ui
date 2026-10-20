@@ -657,6 +657,8 @@ button,
   cursor: pointer;
   user-select: none;
   margin: 2px;
+  font-family: inherit;
+  font-size: 14px;
 }
 .vl-switch-input {
   position: absolute;
@@ -687,25 +689,31 @@ button,
   left: var(--vl-switch-padding);
   background: #fff;
   border-radius: var(--radius-inner);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: var(--ui-transition);
 }
 .vl-switch-input:checked + .vl-switch-slider {
-  background: var(--ui-color-primary);
+  background: var(--ui-color-primary, #0066ff);
 }
 .vl-switch-input:checked + .vl-switch-slider::before {
-  transform: translateX(20px);
+  transform: translateX(calc(var(--vl-switch-width) - var(--vl-switch-thumb-size) - (var(--vl-switch-padding) * 2)));
+}
+.vl-switch-text {
+  font-weight: 500;
+  color: var(--ui-color-text, #333);
+  transition: color 0.2s ease;
+}
+.vl-switch.vl-switch-bare .vl-switch-slider {
+  display: none;
 }
 .vl-switch:hover .vl-switch-slider {
   opacity: 0.9;
 }
 .vl-switch-input:focus-visible + .vl-switch-slider {
-  outline: 2px solid var(--ui-color-primary);
+  outline: 2px solid var(--ui-color-primary, #0066ff);
   outline-offset: 2px;
 }
-.vl-switch-input:disabled + .vl-switch-slider {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+.vl-switch-input:disabled + .vl-switch-slider,
 .vl-switch-input:disabled ~ .vl-switch-text {
   opacity: 0.5;
   cursor: not-allowed;
