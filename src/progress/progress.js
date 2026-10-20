@@ -29,7 +29,6 @@ export default {
 		else
 			elem = this.createLineare(config);
 		
-		
 		this.app.libs.apply(elem, config);
 		this.apply(elem, config);
 		

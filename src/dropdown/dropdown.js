@@ -10,8 +10,6 @@ export default {
 
 	insert(container, config) {
 		const elem = this.create(config);
-		this.app.libs.apply(elem, config);
-		this.apply(elem, config);
 		container.append(elem);
 	},
 	
@@ -28,8 +26,8 @@ export default {
 	},
 	
 	create(config) {
-		const result = document.createElement('div');
-		result.classList.add(this.wrapper)
+		const elem = document.createElement('div');
+		elem.classList.add(this.wrapper)
 
 		const btn = document.createElement('button');
 		btn.classList.add('vl-btn');
@@ -44,9 +42,13 @@ export default {
 		elem_drop.setAttribute('role', 'menu');
 		this.createItems(elem_drop, config.items || []);
 
-		result.append(btn);
-		result.append(elem_drop);
-		return result;
+		elem.append(btn);
+		elem.append(elem_drop);
+		
+		this.app.libs.apply(elem, config);
+		this.apply(elem, config);
+		
+		return elem;
 	},
 
 	createItems(root, items = []) {

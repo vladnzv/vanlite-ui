@@ -10,8 +10,6 @@ export default {
 
 	insert(container, config) {
 		const elem = this.create(config);
-		this.app.libs.apply(elem, config);
-		this.apply(elem, config);
 		container.append(elem);
 	},
 	
@@ -21,12 +19,16 @@ export default {
 	},
 	
 	create(config) {
-		let result = document.createElement('div');
-		result.classList.add(this.identifier);
-		result.dataset.ui = 'vl-tabs';
-		result = this.makeItems(result, config);
-		this.handler(result);
-		return result; 
+		let elem = document.createElement('div');
+		elem.classList.add(this.identifier);
+		elem.dataset.ui = 'vl-tabs';
+		elem = this.makeItems(elem, config);
+		this.handler(elem);
+		
+		this.app.libs.apply(elem, config);
+		this.apply(elem, config);
+		
+		return elem; 
 	},
 
 	makeItems(root, config) {

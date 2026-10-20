@@ -10,8 +10,6 @@ export default {
 
 	insert(container, config) {
 		const elem = this.create(config);
-		this.app.libs.apply(elem, config);
-		this.apply(elem, config);
 		container.append(elem);
 		this.rangeUpdate(elem)
 	},
@@ -29,6 +27,9 @@ export default {
 
 		elem.min = config.min || 1;
 		elem.max = config.max || 100;
+		
+		this.app.libs.apply(elem, config);
+		this.apply(elem, config);
 		
 		return elem;
 		

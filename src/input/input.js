@@ -10,8 +10,6 @@ export default {
 
 	insert(container, config) {
 		const elem = this.create(config);
-		this.app.libs.apply(elem, config);
-		this.apply(elem, config);
 		container.append(elem);
 	},
 	
@@ -28,6 +26,8 @@ export default {
 		
 		const elem = document.createElement('input');
 		elem.classList.add(this.identifier);
+		this.app.libs.apply(elem, config);
+		this.apply(elem, config);
 		return elem;
 	},
 
@@ -51,6 +51,8 @@ export default {
 				input.type = 'password';
 			}
 		});
+		this.app.libs.apply(elem, config);
+		this.apply(elem, config);
 		
 		return elem;
 	}
