@@ -73,7 +73,8 @@ function createHeader() {
 	<h1>&lt;Vanlite&gt;&lt;/Vanlite&gt;</h1>
 	<div class="title-caption">Library Vanlite &ndash; try simplify</div>
 </div>
-<div class="language-selection"></div>`;
+<div id="page-mode"></div>
+<div id="language-selection"></div>`;
 	
 	content1 = 
 `<div class="logo-group">
@@ -88,9 +89,29 @@ function createHeader() {
 		//callback: ,
 	}
 	
-	root.querySelector('.language-selection').append( vanlite.button.create(config) )
+	root.querySelector('#language-selection').append( vanlite.button.create(config) )
+	root.querySelector('#page-mode').append( vanlite.switch.create({
+		labelOn: '🌙',
+		labelOff: '☀️',
+		callback: (e) => changeTheme(e),
+	}) )
+	root.querySelector('#page-mode').append( vanlite.switch.create({
+		labelOn: '⭕',
+		labelOff: '🔲',
+		callback: (e) => changeSkin(e),
+	}) )
 
 	return root;
+}
+
+function changeTheme(e) {
+	const isDark = e.target.checked;
+	document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+}
+	
+function changeSkin(e) {
+	const isRound = e.target.checked;
+	document.body.setAttribute('data-skin', isRound ? 'rounded' : 'flat');
 }
 
 function createFooter() {
