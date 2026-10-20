@@ -251,8 +251,6 @@ var VanliteBundle = (() => {
     },
     insert(container, config) {
       const elem = this.create(config);
-      this.app.libs.apply(elem.querySelector(".vl-switch-input"), config);
-      this.apply(elem.querySelector(".vl-switch-input"), config);
       container.append(elem);
     },
     apply(elem, config) {
@@ -261,14 +259,39 @@ var VanliteBundle = (() => {
       if (config.callback)
         elem.addEventListener("change", config.callback);
     },
+    hState(elem, config) {
+      console.log(elem);
+      const input = elem.querySelector(".vl-switch-input");
+      const text_elem = elem.querySelector(".vl-switch-text");
+      if (!input) return;
+      const labelOn = config.labelOn || config.titleOn || config.title || "ON";
+      const labelOff = config.labelOff || config.titleOff || config.title || "OFF";
+      const updateText = () => {
+        if (text_elem) {
+          text_elem.innerHTML = input.checked ? labelOn : labelOff;
+        }
+      };
+      if (config.checked) {
+        input.checked = true;
+      }
+      updateText();
+      input.addEventListener("change", (e) => {
+        updateText();
+      });
+    },
     create(config) {
       const root = document.createElement("label");
       root.classList.add(`${this.identificator}`);
-      const title = config.title || "";
+      if (config.hideSlider) {
+        root.classList.add("vl-switch-bare");
+      }
       let insert = `<input type="checkbox" class="vl-switch-input">
-<span class="vl-switch-slider"></span>
+${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
 <span class="vl-switch-text">${config.title}</span>`;
       root.innerHTML = insert;
+      this.app.libs.apply(root.querySelector(".vl-switch-input"), config);
+      this.apply(root.querySelector(".vl-switch-input"), config);
+      this.hState(root, config);
       return root;
     }
   };
