@@ -10,8 +10,6 @@ export default {
 
 	insert(container, config) {
 		const elem = this.create(config);
-		this.app.libs.apply(elem.querySelector('input'), config);
-		this.apply(elem.querySelector('input'), config);
 		container.append(elem);
 	},
 	
@@ -33,6 +31,10 @@ export default {
 		let insert = 
 		elem.innerHTML = `<input type="radio" class="vl-radio">
 		${title}`;
+		
+		this.app.libs.apply(elem.querySelector('input'), config);
+		this.apply(elem.querySelector('input'), config);
+		
 		return elem;
 	},
 }

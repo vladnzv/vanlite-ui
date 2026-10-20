@@ -1,9 +1,8 @@
 /**
-	Контейнер с модальным окном может быть только один на странице
-	Если создается модальное окно, то оно помещается в этот контейнер
-	Если контейнера не существует, он будет создан
-	Не имеет значения, какой именно элемент создает модальное окно - 
-	помещаться оно будет именно в один и тот же контейнер
+	- Ensured that only one modal container can exist on a page.
+	- Modal windows are now appended to this container when created.
+	- The container is automatically created if it does not exist.
+	- Regardless of which element creates a modal window, it is always appended to the same container.
 */
 
 export default {
@@ -23,9 +22,14 @@ export default {
 		this.close(container);
 		
 		const elem = this.create(config);
-		this.app.libs.apply(elem, config);
-		this.apply(elem, config, container);
 		container.append(elem);
+		
+        if (config.outClose) {
+			container.addEventListener('click', e => {
+                if (e.target === container)
+                    this.close(container);
+            });
+		}
 		
         container.showModal();
     },
@@ -55,7 +59,7 @@ export default {
         if (content instanceof Node) {
             contentEl.append(content);
         } else if (content != null) {
-            // Если передан HTML-текст или обычный текст
+            // If HTML text or plain text is transmitted
             contentEl.insertAdjacentHTML('beforeend', content);
         }
         wrapper.append(contentEl);
@@ -66,6 +70,9 @@ export default {
             footerEl.append(footer);
             wrapper.append(footerEl);
         }
+		
+		this.app.libs.apply(wrapper, config);
+		this.apply(wrapper, config);
 		
         return wrapper;
     },
@@ -79,7 +86,7 @@ export default {
 		root.querySelector('body').append(dialog);
 	},
 
-    apply(root, config, container) {
+    apply(root, config) {
         if (config.width)
             root.style.width = config.width + 'px';
         if (config.height)
@@ -88,12 +95,6 @@ export default {
             this.createBtnClose(root);
         if (config.skin)
             root.dataset.skin = config.skin;
-        if (config.outClose) {
-			container.addEventListener('click', e => {
-                if (e.target === container)
-                    this.close(container);
-            });
-		}
     },
 
     getFooter(config) {

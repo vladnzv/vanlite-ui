@@ -10,8 +10,6 @@ export default {
 
 	insert(container, config) {
 		const elem = this.create(config);
-		this.app.libs.apply(elem, config);
-		this.apply(elem, config);
 		container.append(elem);
 	},
 	
@@ -21,10 +19,13 @@ export default {
 	},
 	
 	create(config) {
-		let result = document.createElement('div');
-		result.classList.add(this.identifier)
-		result = this.makeItems(result, config);
-		return result; 
+		let elem = document.createElement('div');
+		elem.classList.add(this.identifier)
+		elem = this.makeItems(elem, config);
+		
+		this.app.libs.apply(elem, config);
+		this.apply(elem, config);
+		return elem;
 	},
 
 	makeItems(root, config) {

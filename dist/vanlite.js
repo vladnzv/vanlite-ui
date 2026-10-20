@@ -64,9 +64,13 @@ var VanliteBundle = (() => {
       container = document.querySelector(`#${this.identifier}`);
       this.close(container);
       const elem = this.create(config);
-      this.app.libs.apply(elem, config);
-      this.apply(elem, config, container);
       container.append(elem);
+      if (config.outClose) {
+        container.addEventListener("click", (e) => {
+          if (e.target === container)
+            this.close(container);
+        });
+      }
       container.showModal();
     },
     create(config) {
@@ -97,6 +101,8 @@ var VanliteBundle = (() => {
         footerEl.append(footer);
         wrapper.append(footerEl);
       }
+      this.app.libs.apply(wrapper, config);
+      this.apply(wrapper, config);
       return wrapper;
     },
     createContainerIfNoExist(root) {
@@ -106,7 +112,7 @@ var VanliteBundle = (() => {
       dialog.id = this.identifier;
       root.querySelector("body").append(dialog);
     },
-    apply(root, config, container) {
+    apply(root, config) {
       if (config.width)
         root.style.width = config.width + "px";
       if (config.height)
@@ -115,12 +121,6 @@ var VanliteBundle = (() => {
         this.createBtnClose(root);
       if (config.skin)
         root.dataset.skin = config.skin;
-      if (config.outClose) {
-        container.addEventListener("click", (e) => {
-          if (e.target === container)
-            this.close(container);
-        });
-      }
     },
     getFooter(config) {
       if (!config.btnFooter)
@@ -185,8 +185,6 @@ var VanliteBundle = (() => {
     insert(container, config) {
       this.createContainerIfNoExist(container);
       const elem = this.create(config);
-      this.app.libs.apply(elem, config);
-      this.apply(elem, config);
       container.querySelector("#" + this.identifier).append(elem);
       elem.addEventListener("click", () => {
         elem.remove();
@@ -213,19 +211,21 @@ var VanliteBundle = (() => {
       container.body.append(root);
     },
     create(config) {
-      const root = document.createElement("div");
-      root.classList = "vl-toast";
+      const elem = document.createElement("div");
+      elem.classList = "vl-toast";
       const title = config.title || "";
       const content = config.content || "";
       if (config.id)
-        root.id = config.id;
+        elem.id = config.id;
       let insert = `${this.getIcon(config)}
 <div class="vl-toast-body">
 	<div class="vl-toast-title">${title}</div>
 	<div class="vl-toast-content">${content}</div>
 </div>`;
-      root.innerHTML = insert;
-      return root;
+      elem.innerHTML = insert;
+      this.app.libs.apply(elem, config);
+      this.apply(elem, config);
+      return elem;
     },
     getIcon(config) {
       let result = "";
@@ -342,8 +342,6 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
     },
     insert(container, config) {
       const elem = this.create(config);
-      this.app.libs.apply(elem.querySelector("input"), config);
-      this.apply(elem.querySelector("input"), config);
       container.append(elem);
     },
     apply(elem, config) {
@@ -361,6 +359,8 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
       );
       let insert = elem.innerHTML = `<input type="radio" class="vl-radio">
 		${title}`;
+      this.app.libs.apply(elem.querySelector("input"), config);
+      this.apply(elem.querySelector("input"), config);
       return elem;
     }
   };
@@ -379,8 +379,7 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
       if (!container)
         return false;
       const elem = this.create(config);
-      this.app.libs.apply(elem, config);
-      this.apply(elem, config);
+      ;
       container.append(elem);
     },
     apply(elem, config) {
@@ -399,6 +398,8 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
         this.identifier,
         classes
       );
+      this.app.libs.apply(elem, config);
+      this.apply(elem, config);
       return elem;
     },
     createWithText(config) {
@@ -424,8 +425,6 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
     },
     insert(container, config) {
       const elem = this.create(config);
-      this.app.libs.apply(elem, config);
-      this.apply(elem, config);
       container.append(elem);
     },
     apply(elem, config) {
@@ -439,6 +438,8 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
         return this.createPassword(config);
       const elem = document.createElement("input");
       elem.classList.add(this.identifier);
+      this.app.libs.apply(elem, config);
+      this.apply(elem, config);
       return elem;
     },
     createPassword(config) {
@@ -458,6 +459,8 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
           input.type = "password";
         }
       });
+      this.app.libs.apply(elem, config);
+      this.apply(elem, config);
       return elem;
     }
   };
@@ -474,8 +477,6 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
     },
     insert(container, config) {
       const elem = this.create(config);
-      this.app.libs.apply(elem, config);
-      this.apply(elem, config);
       container.append(elem);
       this.rangeUpdate(elem);
     },
@@ -490,6 +491,8 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
       elem.type = "range";
       elem.min = config.min || 1;
       elem.max = config.max || 100;
+      this.app.libs.apply(elem, config);
+      this.apply(elem, config);
       return elem;
     },
     rangeUpdate(range) {
@@ -615,8 +618,6 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
     },
     insert(container, config) {
       const elem = this.create(config);
-      this.app.libs.apply(elem, config);
-      this.apply(elem, config);
       container.append(elem);
     },
     apply(elem, config) {
@@ -624,10 +625,12 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
         elem.addEventListener("click", config.callback);
     },
     create(config) {
-      let result = document.createElement("div");
-      result.classList.add(this.identifier);
-      result = this.makeItems(result, config);
-      return result;
+      let elem = document.createElement("div");
+      elem.classList.add(this.identifier);
+      elem = this.makeItems(elem, config);
+      this.app.libs.apply(elem, config);
+      this.apply(elem, config);
+      return elem;
     },
     makeItems(root, config) {
       const array = config.items;
@@ -662,8 +665,6 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
     },
     insert(container, config) {
       const elem = this.create(config);
-      this.app.libs.apply(elem, config);
-      this.apply(elem, config);
       container.append(elem);
     },
     apply(elem, config) {
@@ -671,12 +672,14 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
         elem.addEventListener("click", config.callback);
     },
     create(config) {
-      let result = document.createElement("div");
-      result.classList.add(this.identifier);
-      result.dataset.ui = "vl-tabs";
-      result = this.makeItems(result, config);
-      this.handler(result);
-      return result;
+      let elem = document.createElement("div");
+      elem.classList.add(this.identifier);
+      elem.dataset.ui = "vl-tabs";
+      elem = this.makeItems(elem, config);
+      this.handler(elem);
+      this.app.libs.apply(elem, config);
+      this.apply(elem, config);
+      return elem;
     },
     makeItems(root, config) {
       const array = config.items;
@@ -734,8 +737,6 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
     },
     insert(container, config) {
       const elem = this.create(config);
-      this.app.libs.apply(elem, config);
-      this.apply(elem, config);
       container.append(elem);
     },
     apply(elem, config) {
@@ -748,8 +749,8 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
         });
     },
     create(config) {
-      const result = document.createElement("div");
-      result.classList.add(this.wrapper);
+      const elem = document.createElement("div");
+      elem.classList.add(this.wrapper);
       const btn = document.createElement("button");
       btn.classList.add("vl-btn");
       btn.classList.add(this.identifier + "-trigger");
@@ -760,9 +761,11 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
       elem_drop.classList.add(this.identifier);
       elem_drop.setAttribute("role", "menu");
       this.createItems(elem_drop, config.items || []);
-      result.append(btn);
-      result.append(elem_drop);
-      return result;
+      elem.append(btn);
+      elem.append(elem_drop);
+      this.app.libs.apply(elem, config);
+      this.apply(elem, config);
+      return elem;
     },
     createItems(root, items = []) {
       items.forEach((itemData) => {
@@ -793,8 +796,6 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
     insert(container, config) {
       let elem = null;
       config.sceleton ? elem = this.createSceleton(config) : elem = this.create(config);
-      this.app.libs.apply(elem, config);
-      this.apply(elem, config);
       container.append(elem);
     },
     apply(elem, config) {
@@ -802,8 +803,8 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
         elem.addEventListener("click", config.callback);
     },
     createSceleton(config) {
-      const result = document.createElement("div");
-      result.classList.add(this.identifier);
+      const elem = document.createElement("div");
+      elem.classList.add(this.identifier);
       const header = document.createElement("div");
       header.classList.add(this.identifier + "-header");
       header.classList.add("vl-skeleton");
@@ -816,14 +817,16 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
       footer.classList.add(this.identifier + "-footer");
       footer.classList.add("vl-skeleton");
       footer.classList.add("vl-skeleton-text");
-      result.append(header);
-      result.append(body);
-      result.append(footer);
-      return result;
+      elem.append(header);
+      elem.append(body);
+      elem.append(footer);
+      this.app.libs.apply(elem, config);
+      this.apply(elem, config);
+      return elem;
     },
     create(config) {
-      const result = document.createElement("div");
-      result.classList.add(this.identifier);
+      const elem = document.createElement("div");
+      elem.classList.add(this.identifier);
       const header = document.createElement("div");
       header.classList.add(this.identifier + "-header");
       const title = config.title || "";
@@ -836,10 +839,12 @@ ${config.slider ? '<span class="vl-switch-slider"></span>' : ""}
       footer.classList.add(this.identifier + "-footer");
       const footer_content = config.footer || "";
       footer.innerHTML = footer_content;
-      result.append(header);
-      result.append(body);
-      result.append(footer);
-      return result;
+      elem.append(header);
+      elem.append(body);
+      elem.append(footer);
+      this.app.libs.apply(elem, config);
+      this.apply(elem, config);
+      return elem;
     },
     createItems(root, config) {
       const items = config.items;

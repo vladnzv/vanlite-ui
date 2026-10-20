@@ -12,9 +12,7 @@ export default {
 		if(!container)
 			return false;
 
-		const elem = this.create(config);
-		this.app.libs.apply(elem, config)
-		this.apply(elem, config);
+		const elem = this.create(config);;
 		container.append(elem);
 	},
 	
@@ -28,13 +26,17 @@ export default {
 			return this.createWithText(config);
 		
 		const elem = document.createElement('input');
-		elem.type = 'checkbox'
+		elem.type = 'checkbox';
+		
 		const classes = config.class || '';
 		const title = config.title || '';
 		
 		elem.classList = this.app.libs.joinStr(elem.classList, 
 										  this.identifier,
 										  classes);
+		
+		this.app.libs.apply(elem, config)
+		this.apply(elem, config)
 		
 		return elem;
 	},

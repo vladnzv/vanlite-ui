@@ -19,8 +19,6 @@ export default {
         this.createContainerIfNoExist(container);
 		
 		const elem = this.create(config);
-		this.app.libs.apply(elem, config);
-		this.apply(elem, config);
 		container.querySelector('#'+this.identifier).append(elem);
 		
 		elem.addEventListener('click', () => {
@@ -56,14 +54,14 @@ export default {
 	},
 	
 	create(config) {
-		const root = document.createElement('div')
-		root.classList = 'vl-toast';
+		const elem = document.createElement('div')
+		elem.classList = 'vl-toast';
 		
 		const title = config.title || '';
 		const content = config.content || '';
 		
 		if(config.id)
-			root.id = config.id;
+			elem.id = config.id;
 		
 		let insert = 
 `${this.getIcon(config)}
@@ -72,9 +70,12 @@ export default {
 	<div class="vl-toast-content">${content}</div>
 </div>`;
 
-		root.innerHTML = insert;
+		elem.innerHTML = insert;
 		
-		return root;
+		this.app.libs.apply(elem, config);
+		this.apply(elem, config);
+		
+		return elem;
 	},
 
 	getIcon(config) {

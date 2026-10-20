@@ -13,8 +13,6 @@ export default {
 		(config.sceleton)
 		?  elem = this.createSceleton(config)
 		:  elem = this.create(config);
-		this.app.libs.apply(elem, config);
-		this.apply(elem, config);
 		container.append(elem);
 	},
 	
@@ -24,8 +22,8 @@ export default {
 	},
 
 	createSceleton(config) {
-		const result = document.createElement('div');
-		result.classList.add(this.identifier);
+		const elem = document.createElement('div');
+		elem.classList.add(this.identifier);
 
 		const header = document.createElement('div');
 		header.classList.add(this.identifier+'-header');
@@ -42,17 +40,20 @@ export default {
 		footer.classList.add('vl-skeleton');
 		footer.classList.add('vl-skeleton-text');
 
-		result.append(header)
-		result.append(body)
-		result.append(footer)
+		elem.append(header);
+		elem.append(body);
+		elem.append(footer);
 		
-		return result;
+		this.app.libs.apply(elem, config);
+		this.apply(elem, config);
+		
+		return elem;
 		
 	},
 	
 	create(config) {
-		const result = document.createElement('div');
-		result.classList.add(this.identifier);
+		const elem = document.createElement('div');
+		elem.classList.add(this.identifier);
 
 		const header = document.createElement('div');
 		header.classList.add(this.identifier+'-header');
@@ -69,11 +70,14 @@ export default {
 		const footer_content = config.footer || '';
 		footer.innerHTML = footer_content;
 
-		result.append(header)
-		result.append(body)
-		result.append(footer)
+		elem.append(header);
+		elem.append(body);
+		elem.append(footer);
 		
-		return result;
+		this.app.libs.apply(elem, config);
+		this.apply(elem, config);
+		
+		return elem;
 	},
 
 	createItems(root, config) {
